@@ -7,9 +7,7 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TemplateUI(
-      appBar: const DefaultAppBarUI(title: 'title',
-      
-      ),
+      appBar: const DefaultAppBarUI(),
       body: Column(
         children: [
           TypographyUI('text'),
