@@ -67,7 +67,7 @@ abstract class BaseTypographyUI extends StatelessWidget {
 
   /// escolhe a fonte
   void get title {
-    fontWeight = FontWeight.w300;
+    fontWeight = FontWeight.w500;
     fontSize = 20;
     fontHeight = 28 / fontSize;
     fontFamily = 'Roboto';
@@ -76,7 +76,7 @@ abstract class BaseTypographyUI extends StatelessWidget {
   /// escolhe a fonte
   ///
   void get subheading {
-    fontWeight = FontWeight.w300;
+    fontWeight = FontWeight.w500;
     fontSize = 18;
     fontHeight = 26 / fontSize;
     fontFamily = 'Roboto';
@@ -84,7 +84,7 @@ abstract class BaseTypographyUI extends StatelessWidget {
 
   /// escolhe a fonte
   void get body1 {
-    fontWeight = FontWeight.w300;
+    fontWeight = FontWeight.w400;
     fontSize = 16;
     fontHeight = 28 / fontSize;
     fontFamily = 'Roboto';

@@ -21,8 +21,8 @@ class SvgUI extends BaseSvgUI {
   Widget build(BuildContext context) {
     return SvgPicture.asset(
       path,
-      width: size ?? 24,
-      height: size ?? 24,
+      width: size ?? 16,
+      height: size ?? 16,
       colorFilter: color != null
           ? ColorFilter.mode(
               color!,
