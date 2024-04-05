@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:step_progress_indicator/step_progress_indicator.dart';
 import 'package:tomato_timer/core/core.dart';
+import 'package:tomato_timer/modules/home/home.dart';
 import 'package:tomato_timer/modules/home/presenter/pages/widgets/notes_content_widget.dart';
 
 class HomePage extends StatelessWidget {
@@ -16,8 +18,8 @@ class HomePage extends StatelessWidget {
             totalSteps: 4,
             size: 20,
             selectedColor: Colors.red,
-            
-            unselectedColor: AppColors.lightGrey100,
+
+            unselectedColor: AppColors.lightGrey100, //TODO remover depois
           ),
           TypographyUI('Pronto?', color: AppColors.greyDefault)..subheading,
           const SizedBox(height: 8),
@@ -29,10 +31,13 @@ class HomePage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               TypographyUI('Notas')..title,
-              TypographyUI(
+              ButtonUI(
                 'Adicionar notas',
                 color: AppColors.orangePrimary,
-              )..body1,
+                onPressed: () {
+                  // Modular.to.pushNamed(HomeRouting.homePage);
+                },
+              )..textButton,
             ],
           ),
           const SizedBox(height: 24),

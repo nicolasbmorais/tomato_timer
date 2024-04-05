@@ -31,7 +31,7 @@ class TextButtonUI extends StatelessWidget {
           child: TypographyUI(
             text,
             color: textColor,
-          )..h1,
+          )..body1,
         ),
       ),
     );

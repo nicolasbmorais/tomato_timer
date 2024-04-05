@@ -22,7 +22,7 @@ class NotesContentWidget extends StatelessWidget {
         Container(
           width: double.infinity,
           decoration: BoxDecoration(
-            color: AppColors.lightGrey200,
+            color: AppColors.lightGrey100,
             borderRadius: const BorderRadius.all(Radius.circular(5)),
           ),
           child: Padding(
