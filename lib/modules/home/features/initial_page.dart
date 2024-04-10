@@ -18,7 +18,7 @@ class InitialPage extends StatelessWidget {
           ),
           ButtonUI(
             'Iniciar o ciclo pomodoro',
-            onPressed: () => Modular.to.pushNamed(HomeRouting.homePage),
+            onPressed: () => Modular.to.pushNamed(HomeRouting.notesPage),
           )..solid,
         ],
       ),

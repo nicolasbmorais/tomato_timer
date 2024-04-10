@@ -46,4 +46,8 @@ abstract class BaseSvgUI extends StatelessWidget {
   void get settings => path = _makeFullPath('icons/settings');
 
   void get viewMore => path = _makeFullPath('icons/view_more');
+
+  void get edit => path = _makeFullPath('icons/edit');
+
+  void get delete => path = _makeFullPath('icons/delete');
 }

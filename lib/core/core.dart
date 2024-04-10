@@ -2,6 +2,7 @@ export 'themes/app_colors.dart';
 export 'themes/ui/appBar/default_app_bar_ui.dart';
 export 'themes/ui/button/button_ui.dart';
 export 'themes/ui/image/image_ui.dart';
+export 'themes/ui/inputs/text_field_ui.dart';
 export 'themes/ui/steps/steps_ui.dart';
 export 'themes/ui/svg/svg_ui.dart';
 export 'themes/ui/template/template_ui.dart';

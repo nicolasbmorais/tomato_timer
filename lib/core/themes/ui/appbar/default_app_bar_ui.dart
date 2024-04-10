@@ -1,19 +1,25 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:tomato_timer/core/core.dart';
 
 class DefaultAppBarUI extends StatelessWidget {
   const DefaultAppBarUI({
-    super.key,
     this.bottomPadding,
     this.leftPadding,
     this.rightPadding,
     this.topPadding,
+    this.settingsOnTap,
+    this.restartOnTap,
+    super.key,
   });
 
   final double? bottomPadding;
   final double? leftPadding;
   final double? rightPadding;
   final double? topPadding;
+  final void Function()? settingsOnTap;
+  final void Function()? restartOnTap;
 
   @override
   Widget build(BuildContext context) {
@@ -37,9 +43,15 @@ class DefaultAppBarUI extends StatelessWidget {
             ),
             Row(
               children: [
-                SvgUI(size: 20)..restart,
+                GestureDetector(
+                  onTap: restartOnTap,
+                  child: SvgUI(size: 20)..restart,
+                ),
                 const SizedBox(width: 10),
-                SvgUI(size: 20)..settings,
+                GestureDetector(
+                  onTap: settingsOnTap,
+                  child: SvgUI(size: 20)..settings,
+                ),
               ],
             ),
           ],
