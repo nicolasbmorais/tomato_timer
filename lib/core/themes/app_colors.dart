@@ -34,7 +34,7 @@ class AppColors {
 
   /// Construtor privado para impedir instanciação
   static MaterialColor get primarySwatch => const MaterialColor(
-        0xFFD0FE62,
+        0xFFD45735,
         <int, Color>{
           50: Color.fromRGBO(212, 87, 53, .1),
           100: Color.fromRGBO(212, 87, 53, .2),

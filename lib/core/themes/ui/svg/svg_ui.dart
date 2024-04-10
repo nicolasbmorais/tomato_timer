@@ -10,6 +10,7 @@ class SvgUI extends BaseSvgUI {
     super.key,
     this.size,
     this.color,
+    this.onTap,
   });
 
   /// width define a largura
@@ -17,18 +18,24 @@ class SvgUI extends BaseSvgUI {
 
   final Color? color;
 
+  void Function()? onTap;
+  
+
   @override
   Widget build(BuildContext context) {
-    return SvgPicture.asset(
-      path,
-      width: size ?? 16,
-      height: size ?? 16,
-      colorFilter: color != null
-          ? ColorFilter.mode(
-              color!,
-              BlendMode.srcIn,
-            )
-          : null,
+    return GestureDetector(
+      onTap: onTap,
+      child: SvgPicture.asset(
+        path,
+        width: size ?? 16,
+        height: size ?? 16,
+        colorFilter: color != null
+            ? ColorFilter.mode(
+                color!,
+                BlendMode.srcIn,
+              )
+            : null,
+      ),
     );
   }
 }

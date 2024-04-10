@@ -38,13 +38,13 @@ abstract class BaseButtonUI extends StatelessWidget {
           Container(
             child: TypographyUI(
               text,
-              color: AppColors.backgroundColor,
+              color: AppColors.orangePrimary,
               textAlign: TextAlign.center,
             )..body1,
           ),
       height: 52,
       width: width,
-      borderSideColor: AppColors.backgroundColor,
+      borderSideColor: AppColors.orangePrimary,
       onPressed: onPressed,
       prefixIcon: prefixIcon,
       suffixIcon: suffixIcon,
@@ -98,6 +98,27 @@ abstract class BaseButtonUI extends StatelessWidget {
       backgroundColor: backgroundColor,
       onPressed: onPressed,
       borderSide: borderSide,
+    );
+  }
+
+  void outlinedCustom({
+    Color? buttonColor,
+  }) {
+    button = OutlinedButtonUI(
+      body: body ??
+          SizedBox(
+            width: 100,
+            child: TypographyUI(
+              text,
+              color: buttonColor ?? AppColors.black,
+              textAlign: TextAlign.center,
+              textOverflow: TextOverflow.visible,
+            )..body1,
+          ),
+      prefixIcon: prefixIcon,
+      height: 56,
+      borderSideColor: buttonColor ?? AppColors.black,
+      onPressed: onPressed,
     );
   }
 }
