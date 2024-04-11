@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_stepindicator/flutter_stepindicator.dart';
+import 'package:tomato_timer/app/app_routing.dart';
 import 'package:tomato_timer/core/core.dart';
-import 'package:tomato_timer/modules/home/home.dart';
-import 'package:tomato_timer/modules/home/widgets/notes_content_widget.dart';
-import 'package:tomato_timer/modules/home/widgets/timer_widget.dart';
+import 'package:tomato_timer/src/ui/widgets/notes_content_widget.dart';
+import 'package:tomato_timer/src/ui/widgets/timer_widget.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -19,7 +19,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return TemplateUI(
       appBar: DefaultAppBarUI(
-        settingsOnTap: () => Modular.to.pushNamed(HomeRouting.configPage),
+        settingsOnTap: () => Modular.to.pushNamed(AppRouting.settingsPage),
       ),
       body: Column(
         children: [
@@ -70,7 +70,7 @@ class _HomePageState extends State<HomePage> {
                 'Adicionar notas',
                 color: AppColors.orangePrimary,
                 onPressed: () {
-                  Modular.to.pushNamed(HomeRouting.notesPage);
+                  Modular.to.pushNamed(AppRouting.notesPage);
                 },
               )..textButton,
             ],
@@ -88,7 +88,7 @@ class _HomePageState extends State<HomePage> {
         ButtonUI(
           'Pequeno intervalo',
           isExpanded: true,
-          onPressed: () => Modular.to.pushNamed(HomeRouting.shortBreakPage),
+          onPressed: () => Modular.to.pushNamed(AppRouting.shortBreakPage),
         )..outlinedCustom(
             buttonColor: AppColors.black,
           ),
@@ -96,7 +96,7 @@ class _HomePageState extends State<HomePage> {
         ButtonUI(
           'Longo intervalo',
           isExpanded: true,
-          onPressed: () => Modular.to.pushNamed(HomeRouting.longBreakPage),
+          onPressed: () => Modular.to.pushNamed(AppRouting.longBreakPage),
         )..outlinedCustom(
             buttonColor: AppColors.black,
           ),

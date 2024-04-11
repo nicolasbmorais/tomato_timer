@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:tomato_timer/app/app_routing.dart';
 import 'package:tomato_timer/core/core.dart';
 import 'package:tomato_timer/core/themes/ui/form/form_ui.dart';
-import 'package:tomato_timer/modules/home/controller/home_cubit.dart';
-import 'package:tomato_timer/modules/home/home_routing.dart';
+import 'package:tomato_timer/src/ui/controllers/home/home_cubit.dart';
 
 class NotesPage extends StatelessWidget {
   const NotesPage({super.key});
@@ -65,8 +65,8 @@ class NotesPage extends StatelessWidget {
               description: descriptionEC.text,
             );
             Modular.to.pushNamedAndRemoveUntil(
-              HomeRouting.homePage,
-              ModalRoute.withName(HomeRouting.homePage),
+              AppRouting.homePage,
+              ModalRoute.withName(AppRouting.homePage),
             );
           },
         )..solid,
