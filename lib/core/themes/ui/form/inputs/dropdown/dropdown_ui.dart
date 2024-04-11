@@ -1,0 +1,66 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:tomato_timer/core/core.dart';
+import 'package:tomato_timer/core/themes/ui/form/inputs/base_input.dart';
+import 'package:tomato_timer/core/themes/ui/form/inputs/text_style_form_ui.dart';
+
+class DropdownUI extends BaseInput {
+  const DropdownUI({
+    required super.name,
+    required super.hintText,
+    this.validators = const [],
+    super.onChanged,
+    super.label,
+    super.suffixIcon,
+    super.initialValue,
+    super.suffixIcononTap,
+    super.controller,
+    this.itens = defaultItens,
+    this.width,
+    super.key,
+  });
+
+  final List<DropdownMenuItem<String>> itens;
+  final List<String? Function(String?)> validators;
+  final double? width;
+
+  static const List<DropdownMenuItem<String>> defaultItens = [];
+
+  @override
+  BaseInputState<DropdownUI> createState() => _DropdownUIState();
+
+  static DropdownMenuItem<String> item({
+    required String text,
+    required String value,
+  }) {
+    return DropdownMenuItem<String>(
+      value: value,
+      child: TypographyUI(
+        text,
+        color: AppColors.black,
+      )..body1,
+    );
+  }
+}
+
+class _DropdownUIState extends BaseInputState<DropdownUI> {
+  @override
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: widget.width,
+      child: FormBuilderDropdown(
+        focusNode: focusNode,
+        isDense: false,
+        name: widget.name,
+        onChanged: widget.onChanged,
+        initialValue: widget.initialValue,
+        style: TextStyleFormUI.label,
+        decoration: makeDecoration(),
+        items: widget.itens,
+        enabled: widget.enabled,
+        dropdownColor: AppColors.white,
+      ),
+    );
+  }
+}

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tomato_timer/core/core.dart';
-import 'package:tomato_timer/core/themes/ui/inputs/text_style_form_ui.dart';
+import 'package:tomato_timer/core/themes/ui/form/inputs/text_style_form_ui.dart';
 
 class BaseInput extends StatefulWidget {
   const BaseInput({

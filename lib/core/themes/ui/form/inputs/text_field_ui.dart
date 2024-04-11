@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:tomato_timer/core/themes/app_colors.dart';
-import 'package:tomato_timer/core/themes/ui/inputs/base_input.dart';
-import 'package:tomato_timer/core/themes/ui/inputs/text_style_form_ui.dart';
+import 'package:tomato_timer/core/themes/ui/form/inputs/base_input.dart';
+import 'package:tomato_timer/core/themes/ui/form/inputs/text_style_form_ui.dart';
 
 class TextFieldUI extends BaseInput {
   const TextFieldUI({

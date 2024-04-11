@@ -6,21 +6,15 @@ import 'package:tomato_timer/core/core.dart';
 import 'package:tomato_timer/src/ui/widgets/notes_content_widget.dart';
 import 'package:tomato_timer/src/ui/widgets/timer_widget.dart';
 
-class HomePage extends StatefulWidget {
+class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
   @override
-  State<HomePage> createState() => _HomePageState();
-}
-
-class _HomePageState extends State<HomePage> {
-  int step = 0;
-  @override
   Widget build(BuildContext context) {
+    const step = 0;
+
     return TemplateUI(
-      appBar: DefaultAppBarUI(
-        settingsOnTap: () => Modular.to.pushNamed(AppRouting.settingsPage),
-      ),
+      appBar: const DefaultAppBarUI(),
       body: Column(
         children: [
           const SizedBox(height: 16),
@@ -70,7 +64,7 @@ class _HomePageState extends State<HomePage> {
                 'Adicionar notas',
                 color: AppColors.orangePrimary,
                 onPressed: () {
-                  Modular.to.pushNamed(AppRouting.notesPage);
+                  Modular.to.pushNamed(AppRouting.homePage);
                 },
               )..textButton,
             ],

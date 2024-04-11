@@ -31,7 +31,7 @@ class SolidButtonUI extends StatelessWidget {
         backgroundColor: backgroundColor,
         side: borderSide ?? BorderSide.none,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(12),
+          borderRadius: BorderRadius.circular(5),
         ),
       ),
       child: SizedBox(

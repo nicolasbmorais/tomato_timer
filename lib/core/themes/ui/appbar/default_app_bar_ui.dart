@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_modular/flutter_modular.dart';
+import 'package:tomato_timer/app/app_routing.dart';
 import 'package:tomato_timer/core/core.dart';
 
 class DefaultAppBarUI extends StatelessWidget {
@@ -9,8 +11,6 @@ class DefaultAppBarUI extends StatelessWidget {
     this.leftPadding,
     this.rightPadding,
     this.topPadding,
-    this.settingsOnTap,
-    this.restartOnTap,
     super.key,
   });
 
@@ -18,8 +18,6 @@ class DefaultAppBarUI extends StatelessWidget {
   final double? leftPadding;
   final double? rightPadding;
   final double? topPadding;
-  final void Function()? settingsOnTap;
-  final void Function()? restartOnTap;
 
   @override
   Widget build(BuildContext context) {
@@ -43,15 +41,15 @@ class DefaultAppBarUI extends StatelessWidget {
             ),
             Row(
               children: [
-                GestureDetector(
-                  onTap: restartOnTap,
-                  child: SvgUI(size: 20)..restart,
-                ),
+                SvgUI(
+                  size: 20,
+                  onTap: () {},
+                )..restart,
                 const SizedBox(width: 10),
-                GestureDetector(
-                  onTap: settingsOnTap,
-                  child: SvgUI(size: 20)..settings,
-                ),
+                SvgUI(
+                  size: 20,
+                  onTap: () => Modular.to.pushNamed(AppRouting.settingsPage),
+                )..settings,
               ],
             ),
           ],
