@@ -91,7 +91,10 @@ class _SettingsPageState extends State<SettingsPage> {
       ),
       fixedBottomWidget: Padding(
         padding: const EdgeInsets.all(24),
-        child: ButtonUI('Salvar',onPressed: (){},)..solid,
+        child: ButtonUI(
+          'Salvar',
+          onPressed: () {},
+        )..solid,
       ),
     );
   }

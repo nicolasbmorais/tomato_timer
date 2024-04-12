@@ -19,7 +19,6 @@ class SvgUI extends BaseSvgUI {
   final Color? color;
 
   void Function()? onTap;
-  
 
   @override
   Widget build(BuildContext context) {

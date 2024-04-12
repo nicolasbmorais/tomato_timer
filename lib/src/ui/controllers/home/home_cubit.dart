@@ -20,6 +20,5 @@ class HomeCubit extends Cubit<HomeState> {
   void removeNote(int index) {
     notesModeList.removeAt(index);
     emit(HomeLoaded());
-
   }
 }
