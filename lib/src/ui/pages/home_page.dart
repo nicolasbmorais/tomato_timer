@@ -31,7 +31,7 @@ class HomePage extends StatelessWidget {
           // TimerWidget(
           //   title: 'title',
           //   timer: 'timer',
-          //   button: ButtonUI('Comece a focar')..solid, //TODO: estado inicial
+          //   button: ButtonUI('Comece a focar')..solid,
           // ),
           // TimerWidget(
           //   title: 'Concentrando',
@@ -42,7 +42,7 @@ class HomePage extends StatelessWidget {
           //       const SizedBox(height: 12),
           //       _pauseButtons(),
           //     ],
-          //   ), //TODO: Estado concentrando
+          //   ),
           // ),
           TimerWidget(
             title: 'Pausado',
@@ -53,7 +53,7 @@ class HomePage extends StatelessWidget {
                 const SizedBox(height: 12),
                 _pauseButtons(),
               ],
-            ), //TODO: Estado pausado
+            ),
           ),
           const SizedBox(height: 40),
           Row(
