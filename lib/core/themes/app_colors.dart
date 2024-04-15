@@ -33,10 +33,10 @@ class AppColors {
   /// Construtor privado para impedir instanciação
   static Color get green => const Color(0xFF69D470);
 
+  /// Construtor privado para impedir instanciação
+  static Color get blue => const Color(0xFF1B83E3);
+
 //Buttons
-
-  static Color get disabledButton => const Color(0xFFF0F1F5);
-
   static Color get enabledBorderButton => const Color(0xFFD8DADF);
 
   /// Construtor privado para impedir instanciação

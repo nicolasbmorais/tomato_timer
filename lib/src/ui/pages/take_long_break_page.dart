@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:tomato_timer/core/core.dart';
 
-class DeleteNotesPage extends StatelessWidget {
-  const DeleteNotesPage({super.key});
+class TakeLongBreakPage extends StatelessWidget {
+  const TakeLongBreakPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -10,25 +10,22 @@ class DeleteNotesPage extends StatelessWidget {
       appBar: const DefaultAppBarUI(),
       body: Column(
         children: [
-          TypographyUI('Excluir notas?')..h2Bold,
-          TypographyUI('Isso é permanente e não pode ser desfeito')..body1,
+          TypographyUI('Faça uma longa pausa')..h2Bold,
+          const SizedBox(height: 16),
+          TypographyUI('Parabéns pelo excelente trabalho!')..body1,
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 32),
             child: SvgUI(
               size: 300,
-            )..personAttention,
+            )..personLongBreak,
           ),
+          const SizedBox(height: 30),
           Row(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              ButtonUI(
-                'Excluir',
-                isExpanded: true,
-              )..outlinedCustom(buttonColor: AppColors.black),
+              SvgUI()..restart,
               const SizedBox(width: 8),
-              ButtonUI(
-                'Apagar',
-                isExpanded: true,
-              )..solid,
+              TypographyUI('Reiniciar o ciclo pomodoro')..body1,
             ],
           ),
         ],

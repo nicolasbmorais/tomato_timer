@@ -22,7 +22,7 @@ class TextButtonUI extends StatelessWidget {
       style: OutlinedButton.styleFrom(
         side: BorderSide.none,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(53),
+          borderRadius: BorderRadius.circular(5),
         ),
       ),
       child: SizedBox(

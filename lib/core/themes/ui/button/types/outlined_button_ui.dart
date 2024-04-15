@@ -38,6 +38,7 @@ class OutlinedButtonUI extends StatelessWidget {
         child: Center(
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisSize: MainAxisSize.min,
             children: [
               if (prefixIcon != null) ...[
                 prefixIcon!,

@@ -89,7 +89,7 @@ abstract class BaseButtonUI extends StatelessWidget {
           Container(
             child: TypographyUI(
               text,
-              color: textColor ?? AppColors.black,
+              color: AppColors.white,
               textAlign: TextAlign.center,
             )..body1,
           ),
