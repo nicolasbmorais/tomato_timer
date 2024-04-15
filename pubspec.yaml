@@ -17,7 +17,7 @@ dependencies:
   flutter_local_notifications: ^17.0.0
   flutter_localizations:
     sdk: flutter
-  flutter_modular: ^6.3.2
+  flutter_modular: ^6.3.3
   flutter_native_splash: ^2.3.10
   flutter_stepindicator: ^0.1.7
   flutter_svg: ^2.0.10+1
