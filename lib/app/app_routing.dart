@@ -1,6 +1,5 @@
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:tomato_timer/src/ui/pages/delete_notes_page.dart';
-import 'package:tomato_timer/src/ui/pages/home_page.dart';
 import 'package:tomato_timer/src/ui/pages/initial_page.dart';
 import 'package:tomato_timer/src/ui/pages/notes_page.dart';
 import 'package:tomato_timer/src/ui/pages/settings_page.dart';
@@ -19,7 +18,7 @@ class AppRouting {
   static void routes(RouteManager r) {
     r
       ..child('/', child: (context) => const InitialPage())
-      ..child(homePage, child: (context) => const HomePage())
+      // ..child(homePage, child: (context) => const HomePage())
       ..child(notesPage, child: (context) => const NotesPage())
       ..child(homePage, child: (context) => const DeleteNotesPage())
       ..child(shortBreakPage, child: (context) => const TakeShortBreak())
