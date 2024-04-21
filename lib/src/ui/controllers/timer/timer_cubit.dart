@@ -6,9 +6,11 @@ part 'timer_state.dart';
 class TimerCubit extends Cubit<TimerState> {
   TimerCubit() : super(TimerInitial());
 
+  int lapCount = 0;
+
   StopWatchTimer stopWatchTimer = StopWatchTimer(
     mode: StopWatchMode.countDown,
-    presetMillisecond: StopWatchTimer.getMilliSecFromMinute(25),
+    presetMillisecond: StopWatchTimer.getMilliSecFromSecond(25),
   );
 
   Future<void> disposeTimer() async {
@@ -17,6 +19,13 @@ class TimerCubit extends Cubit<TimerState> {
 
   void start() {
     stopWatchTimer.onStartTimer();
+    stopWatchTimer.fetchEnded.listen((value) {
+      if (lapCount <= 0 && lapCount < 4) {
+        lapCount++;
+      }
+      stopWatchTimer.onResetTimer();
+      emit(TimerInitial());
+    });
     emit(TimerStarted());
   }
 
@@ -28,9 +37,5 @@ class TimerCubit extends Cubit<TimerState> {
   void restart() {
     stopWatchTimer.onResetTimer();
     emit(TimerInitial());
-  }
-
-  void clear() {
-    stopWatchTimer.clearPresetTime();
   }
 }

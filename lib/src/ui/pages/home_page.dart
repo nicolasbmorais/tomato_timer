@@ -19,60 +19,37 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final step = 0;
   final cubit = Modular.get<TimerCubit>();
-
-  // @override
-  // Future<void> dispose() async {
-  //   super.dispose();
-  //   await cubit.stopWatchTimer.dispose();
-  // }
 
   @override
   Widget build(BuildContext context) {
     return TemplateUI(
       appBar: const DefaultAppBarUI(),
-      body: Column(
-        children: [
-          const SizedBox(height: 16),
-          FlutterStepIndicator(
-            height: 20,
-            list: const [0, 1, 2, 3],
-            onChange: (i) {},
-            page: step,
-            progressColor: AppColors.orangePrimary,
-            negativeColor: AppColors.lightGrey200,
-            positiveColor: AppColors.orangePrimary,
-            positiveCheck: const SizedBox(),
-          ),
-          // TimerWidget(
-          //   title: 'title',
-          //   timer: 'timer',
-          //   button: ButtonUI('Comece a focar')..solid,
-          // ),
-          // TimerWidget(
-          //   title: 'Concentrando',
-          //   timer: 'timer',
-          //   button: Column(
-          //     children: [
-          //       ButtonUI('Pausar')..outlined,
-          //       const SizedBox(height: 12),
-          //       _pauseButtons(),
-          //     ],
-          //   ),
-          // ),
-          StreamBuilder<int>(
-            stream: cubit.stopWatchTimer.rawTime,
-            initialData: cubit.stopWatchTimer.rawTime.value,
-            builder: (context, state) {
-              final displayTime = StopWatchTimer.getDisplayTime(
-                state.data!,
-                milliSecond: false,
-              );
-
-              return BlocBuilder<TimerCubit, TimerState>(
-                bloc: cubit,
+      body: BlocBuilder<TimerCubit, TimerState>(
+        bloc: cubit,
+        builder: (context, state) {
+          return Column(
+            children: [
+              const SizedBox(height: 16),
+              FlutterStepIndicator(
+                height: 20,
+                list: const [0, 1, 2, 3],
+                onChange: (i) {},
+                page: cubit.lapCount,
+                progressColor: AppColors.orangePrimary,
+                negativeColor: AppColors.lightGrey200,
+                positiveColor: AppColors.orangePrimary,
+                positiveCheck: const SizedBox(),
+              ),
+              StreamBuilder<int>(
+                stream: cubit.stopWatchTimer.rawTime,
+                initialData: cubit.stopWatchTimer.rawTime.value,
                 builder: (context, state) {
+                  final displayTime = StopWatchTimer.getDisplayTime(
+                    state.data!,
+                    milliSecond: false,
+                  );
+
                   if (state is TimerStarted) {
                     return TimerStartedWidget(timer: displayTime, cubit: cubit);
                   }
@@ -83,26 +60,26 @@ class _HomePageState extends State<HomePage> {
 
                   return TimerInitialWidget(timer: displayTime, cubit: cubit);
                 },
-              );
-            },
-          ),
-          const SizedBox(height: 40),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              TypographyUI('Notas')..title,
-              ButtonUI(
-                'Adicionar notas',
-                color: AppColors.orangePrimary,
-                onPressed: () {
-                  Modular.to.pushNamed(AppRouting.homePage);
-                },
-              )..textButton,
+              ),
+              const SizedBox(height: 40),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  TypographyUI('Notas')..title,
+                  ButtonUI(
+                    'Adicionar notas',
+                    color: AppColors.orangePrimary,
+                    onPressed: () {
+                      Modular.to.pushNamed(AppRouting.homePage);
+                    },
+                  )..textButton,
+                ],
+              ),
+              const SizedBox(height: 24),
+              const NotesContentWidget(),
             ],
-          ),
-          const SizedBox(height: 24),
-          const NotesContentWidget(),
-        ],
+          );
+        },
       ),
     );
   }
