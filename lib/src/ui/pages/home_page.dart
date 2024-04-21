@@ -74,34 +74,11 @@ class _HomePageState extends State<HomePage> {
                 bloc: cubit,
                 builder: (context, state) {
                   if (state is TimerStarted) {
-                    return TimerStartedWidget(
-                      timer: displayTime,
-                      button: Column(
-                        children: [
-                          ButtonUI(
-                            'Pausar',
-                            onPressed: cubit.stop,
-                          )..outlined,
-                          const SizedBox(height: 12),
-                          _pauseButtons(),
-                        ],
-                      ),
-                    );
+                    return TimerStartedWidget(timer: displayTime, cubit: cubit);
                   }
+
                   if (state is TimerPaused) {
-                    return TimerPausedWidget(
-                      timer: displayTime,
-                      button: Column(
-                        children: [
-                          ButtonUI(
-                            'Continue focando',
-                            onPressed: cubit.start,
-                          )..solid,
-                          const SizedBox(height: 12),
-                          _pauseButtons(),
-                        ],
-                      ),
-                    );
+                    return TimerPausedWidget(timer: displayTime, cubit: cubit);
                   }
 
                   return TimerInitialWidget(timer: displayTime, cubit: cubit);
@@ -127,28 +104,6 @@ class _HomePageState extends State<HomePage> {
           const NotesContentWidget(),
         ],
       ),
-    );
-  }
-
-  Row _pauseButtons() {
-    return Row(
-      children: [
-        ButtonUI(
-          'Pequeno intervalo',
-          isExpanded: true,
-          onPressed: () => Modular.to.pushNamed(AppRouting.shortBreakInfoPage),
-        )..outlinedCustom(
-            buttonColor: AppColors.black,
-          ),
-        const SizedBox(width: 12),
-        ButtonUI(
-          'Longo intervalo',
-          isExpanded: true,
-          onPressed: () => Modular.to.pushNamed(AppRouting.longBreakPage),
-        )..outlinedCustom(
-            buttonColor: AppColors.black,
-          ),
-      ],
     );
   }
 }

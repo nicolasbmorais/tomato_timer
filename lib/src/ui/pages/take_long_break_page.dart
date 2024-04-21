@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
+import 'package:tomato_timer/app/app_routing.dart';
 import 'package:tomato_timer/core/core.dart';
+import 'package:tomato_timer/src/ui/controllers/timer/timer_cubit.dart';
 
 class TakeLongBreakPage extends StatelessWidget {
   const TakeLongBreakPage({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final cubit = Modular.get<TimerCubit>();
+
     return TemplateUI(
       appBar: const DefaultAppBarUI(),
       body: Column(
@@ -23,7 +28,12 @@ class TakeLongBreakPage extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              SvgUI()..restart,
+              SvgUI(
+                onTap: () {
+                  cubit.restart();
+                  Modular.to.popUntil(ModalRoute.withName(AppRouting.homePage));
+                },
+              )..restart,
               const SizedBox(width: 8),
               TypographyUI('Reiniciar o ciclo pomodoro')..body1,
             ],

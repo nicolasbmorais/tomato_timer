@@ -25,7 +25,7 @@ class TimerCubit extends Cubit<TimerState> {
     emit(TimerPaused());
   }
 
-  void reset() {
+  void restart() {
     stopWatchTimer.onResetTimer();
     emit(TimerInitial());
   }

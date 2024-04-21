@@ -4,6 +4,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:tomato_timer/app/app_routing.dart';
 import 'package:tomato_timer/core/core.dart';
+import 'package:tomato_timer/src/ui/controllers/timer/timer_cubit.dart';
 
 class DefaultAppBarUI extends StatelessWidget {
   const DefaultAppBarUI({
@@ -21,6 +22,8 @@ class DefaultAppBarUI extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final cubit = Modular.get<TimerCubit>();
+
     return Padding(
       padding: const EdgeInsets.only(
         left: 16,
@@ -43,7 +46,7 @@ class DefaultAppBarUI extends StatelessWidget {
               children: [
                 SvgUI(
                   size: 20,
-                  onTap: () {},
+                  onTap: cubit.restart,
                 )..restart,
                 const SizedBox(width: 10),
                 SvgUI(
