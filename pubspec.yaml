@@ -18,7 +18,7 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   flutter_modular: ^6.3.2
-  flutter_native_splash: ^2.3.10
+  flutter_native_splash: ^2.4.0
   flutter_stepindicator: ^0.1.7
   flutter_svg: ^2.0.10+1
   font_awesome_flutter: ^10.7.0
