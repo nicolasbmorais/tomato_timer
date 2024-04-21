@@ -30,12 +30,19 @@ Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
   Bloc.observer = const AppBlocObserver();
 
   // Add cross-flavor configuration here
-  runApp(
-    ModularApp(
-      module: AppModule(
-          // sharedPreferences: await SharedPreferences.getInstance(),
-          ),
-      child: await builder(),
-    ),
+  await runZonedGuarded(
+    () async {
+      WidgetsFlutterBinding.ensureInitialized();
+
+      runApp(
+        ModularApp(
+          module: AppModule(
+              // sharedPreferences: await SharedPreferences.getInstance(),
+              ),
+          child: await builder(),
+        ),
+      );
+    },
+    (error, stackTrace) => log(error.toString(), stackTrace: stackTrace),
   );
 }
