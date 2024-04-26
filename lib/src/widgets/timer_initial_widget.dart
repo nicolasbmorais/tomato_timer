@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tomato_timer/core/core.dart';
-import 'package:tomato_timer/src/ui/controllers/timer/timer_cubit.dart';
+import 'package:tomato_timer/src/controllers/timer/timer_cubit.dart';
 
 class TimerInitialWidget extends StatelessWidget {
   const TimerInitialWidget({

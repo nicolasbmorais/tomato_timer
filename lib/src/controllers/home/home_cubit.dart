@@ -1,5 +1,5 @@
 import 'package:bloc/bloc.dart';
-import 'package:tomato_timer/src/data/models/notes_model.dart';
+import 'package:tomato_timer/src/models/notes_model.dart';
 
 part 'home_state.dart';
 

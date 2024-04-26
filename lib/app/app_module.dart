@@ -1,8 +1,8 @@
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:tomato_timer/app/app_routing.dart';
-import 'package:tomato_timer/src/ui/controllers/home/home_cubit.dart';
-import 'package:tomato_timer/src/ui/controllers/notes/notes_cubit.dart';
-import 'package:tomato_timer/src/ui/controllers/timer/timer_cubit.dart';
+import 'package:tomato_timer/src/controllers/home/home_cubit.dart';
+import 'package:tomato_timer/src/controllers/notes/notes_cubit.dart';
+import 'package:tomato_timer/src/controllers/timer/timer_cubit.dart';
 
 class AppModule extends Module {
   @override

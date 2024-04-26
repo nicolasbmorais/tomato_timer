@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:tomato_timer/app/app_routing.dart';
 import 'package:tomato_timer/core/core.dart';
-import 'package:tomato_timer/src/ui/controllers/home/home_cubit.dart';
+import 'package:tomato_timer/src/controllers/home/home_cubit.dart';
 
 class NotesContentWidget extends StatelessWidget {
   const NotesContentWidget({

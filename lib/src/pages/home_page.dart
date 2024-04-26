@@ -5,11 +5,11 @@ import 'package:flutter_stepindicator/flutter_stepindicator.dart';
 import 'package:stop_watch_timer/stop_watch_timer.dart';
 import 'package:tomato_timer/app/app_routing.dart';
 import 'package:tomato_timer/core/core.dart';
-import 'package:tomato_timer/src/ui/controllers/timer/timer_cubit.dart';
-import 'package:tomato_timer/src/ui/widgets/notes_content_widget.dart';
-import 'package:tomato_timer/src/ui/widgets/timer_initial_widget.dart';
-import 'package:tomato_timer/src/ui/widgets/timer_paused_widget.dart';
-import 'package:tomato_timer/src/ui/widgets/timer_started_widget.dart';
+import 'package:tomato_timer/src/controllers/timer/timer_cubit.dart';
+import 'package:tomato_timer/src/widgets/notes_content_widget.dart';
+import 'package:tomato_timer/src/widgets/timer_initial_widget.dart';
+import 'package:tomato_timer/src/widgets/timer_paused_widget.dart';
+import 'package:tomato_timer/src/widgets/timer_started_widget.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -44,9 +44,9 @@ class _HomePageState extends State<HomePage> {
               StreamBuilder<int>(
                 stream: cubit.stopWatchTimer.rawTime,
                 initialData: cubit.stopWatchTimer.rawTime.value,
-                builder: (context, state) {
+                builder: (context, snapshot) {
                   final displayTime = StopWatchTimer.getDisplayTime(
-                    state.data!,
+                    snapshot.data!,
                     milliSecond: false,
                   );
 

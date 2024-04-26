@@ -1,12 +1,12 @@
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:tomato_timer/src/ui/pages/delete_notes_page.dart';
-import 'package:tomato_timer/src/ui/pages/home_page.dart';
-import 'package:tomato_timer/src/ui/pages/initial_page.dart';
-import 'package:tomato_timer/src/ui/pages/notes_page.dart';
-import 'package:tomato_timer/src/ui/pages/settings_page.dart';
-import 'package:tomato_timer/src/ui/pages/take_long_break_page.dart';
-import 'package:tomato_timer/src/ui/pages/take_short_break_info_page.dart';
-import 'package:tomato_timer/src/ui/pages/take_short_break_page.dart';
+import 'package:tomato_timer/src/pages/delete_notes_page.dart';
+import 'package:tomato_timer/src/pages/home_page.dart';
+import 'package:tomato_timer/src/pages/initial_page.dart';
+import 'package:tomato_timer/src/pages/notes_page.dart';
+import 'package:tomato_timer/src/pages/settings_page.dart';
+import 'package:tomato_timer/src/pages/take_long_break_page.dart';
+import 'package:tomato_timer/src/pages/take_short_break_info_page.dart';
+import 'package:tomato_timer/src/pages/take_short_break_page.dart';
 
 class AppRouting {
   static String get homePage => '/home_page';

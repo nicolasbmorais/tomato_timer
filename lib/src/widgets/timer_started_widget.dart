@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:tomato_timer/app/app_routing.dart';
 import 'package:tomato_timer/core/core.dart';
-import 'package:tomato_timer/src/ui/controllers/timer/timer_cubit.dart';
-import 'package:tomato_timer/src/ui/widgets/pause_buttons.dart';
+import 'package:tomato_timer/src/controllers/timer/timer_cubit.dart';
+import 'package:tomato_timer/src/widgets/pause_buttons.dart';
 
 class TimerStartedWidget extends StatelessWidget {
   const TimerStartedWidget({

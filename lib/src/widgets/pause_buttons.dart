@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:tomato_timer/core/core.dart';
-import 'package:tomato_timer/src/ui/controllers/timer/timer_cubit.dart';
+import 'package:tomato_timer/src/controllers/timer/timer_cubit.dart';
 
 class PauseButtons extends StatelessWidget {
   const PauseButtons({
