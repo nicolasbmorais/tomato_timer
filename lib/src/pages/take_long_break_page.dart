@@ -12,6 +12,7 @@ class TakeLongBreakPage extends StatelessWidget {
     final cubit = Modular.get<TimerCubit>();
 
     return TemplateUI(
+      bottomPading: 32,
       appBar: const DefaultAppBarUI(),
       body: Column(
         children: [
@@ -25,18 +26,19 @@ class TakeLongBreakPage extends StatelessWidget {
             )..personLongBreak,
           ),
           const SizedBox(height: 30),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              SvgUI(
-                onTap: () {
-                  cubit.restart();
-                  Modular.to.popUntil(ModalRoute.withName(AppRouting.homePage));
-                },
-              )..restart,
-              const SizedBox(width: 8),
-              TypographyUI('Reiniciar o ciclo pomodoro')..body1,
-            ],
+          GestureDetector(
+            onTap: () {
+              cubit.restart();
+              Modular.to.popUntil(ModalRoute.withName(AppRouting.homePage));
+            },
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SvgUI()..restart,
+                const SizedBox(width: 8),
+                TypographyUI('Reiniciar o ciclo pomodoro')..body1,
+              ],
+            ),
           ),
         ],
       ),

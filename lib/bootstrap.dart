@@ -5,6 +5,7 @@ import 'package:bloc/bloc.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:tomato_timer/app/app_module.dart';
+import 'package:tomato_timer/src/service/secure_storage.dart';
 
 class AppBlocObserver extends BlocObserver {
   const AppBlocObserver();
@@ -33,12 +34,10 @@ Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
   await runZonedGuarded(
     () async {
       WidgetsFlutterBinding.ensureInitialized();
-
+      await SharedPreferencesService().init();
       runApp(
         ModularApp(
-          module: AppModule(
-              // sharedPreferences: await SharedPreferences.getInstance(),
-              ),
+          module: AppModule(),
           child: await builder(),
         ),
       );

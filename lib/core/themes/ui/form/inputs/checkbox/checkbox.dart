@@ -31,9 +31,9 @@ class CheckBoxButton extends StatelessWidget {
       child: Theme(
         data: ThemeData(
           checkboxTheme: CheckboxThemeData(
-            fillColor: MaterialStateProperty.resolveWith<Color>(
-              (Set<MaterialState> states) {
-                if (states.contains(MaterialState.disabled)) {
+            fillColor: WidgetStateProperty.resolveWith<Color>(
+              (Set<WidgetState> states) {
+                if (states.contains(WidgetState.disabled)) {
                   return AppColors.white;
                 }
                 return AppColors.white;
@@ -52,8 +52,8 @@ class CheckBoxButton extends StatelessWidget {
           checkColor: AppColors.green,
           onChanged: onChanged,
           onReset: () => onReset,
-          side: MaterialStateBorderSide.resolveWith(
-            (Set<MaterialState> states) {
+          side: WidgetStateBorderSide.resolveWith(
+            (Set<WidgetState> states) {
               return BorderSide(color: AppColors.black);
             },
           ),

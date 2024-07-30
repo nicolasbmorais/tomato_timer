@@ -4,13 +4,16 @@ import 'package:stop_watch_timer/stop_watch_timer.dart';
 part 'timer_state.dart';
 
 class TimerCubit extends Cubit<TimerState> {
-  TimerCubit() : super(TimerInitial());
+  TimerCubit() : super(TimerInitial()){
+//TODO: iniciar dados aqui
+  }
 
   int lapCount = 0;
+  bool _watchTimerIsListen = false;
 
   StopWatchTimer stopWatchTimer = StopWatchTimer(
     mode: StopWatchMode.countDown,
-    presetMillisecond: StopWatchTimer.getMilliSecFromSecond(25),
+    presetMillisecond: StopWatchTimer.getMilliSecFromSecond(5),
   );
 
   Future<void> disposeTimer() async {
@@ -19,13 +22,19 @@ class TimerCubit extends Cubit<TimerState> {
 
   void start() {
     stopWatchTimer.onStartTimer();
-    stopWatchTimer.fetchEnded.listen((value) {
-      if (lapCount <= 0 && lapCount < 4) {
-        lapCount++;
-      }
-      stopWatchTimer.onResetTimer();
-      emit(TimerInitial());
-    });
+
+    if (!_watchTimerIsListen) {
+      stopWatchTimer.fetchEnded.listen((value) {
+        if (lapCount <= 4) {
+          lapCount++;
+          _watchTimerIsListen = true;
+        }
+        stopWatchTimer.onResetTimer();
+        emit(TimerInitial());
+      });
+    }
+
+    _watchTimerIsListen = false;
     emit(TimerStarted());
   }
 
@@ -36,6 +45,11 @@ class TimerCubit extends Cubit<TimerState> {
 
   void restart() {
     stopWatchTimer.onResetTimer();
+    lapCount = 0;
     emit(TimerInitial());
+  }
+
+  void setTimerValue(int value) {
+    stopWatchTimer.setPresetSecondTime(value);
   }
 }

@@ -59,8 +59,7 @@ class TemplateUI extends StatelessWidget {
               ),
             ),
 
-            // LoadUI(),
-            // AlertUI(
+            // AlertUI( //TODO;rever alert
             //   alertModelUI: alertModelUI,
             // ),
           ],
