@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:tomato_timer/core/core.dart';
 import 'package:tomato_timer/core/themes/ui/form/inputs/checkbox/checkbox_ui.dart';
 import 'package:tomato_timer/core/themes/ui/form/inputs/dropdown/dropdown_ui.dart';
+import 'package:tomato_timer/src/controllers/settings/settings_cubit.dart';
 
 class SettingsPage extends StatefulWidget {
   const SettingsPage({super.key});
@@ -64,13 +66,21 @@ class _SettingsPageState extends State<SettingsPage> {
           CheckBoxUI(
             text: 'Mostrar notificação quando concluído',
           )..checkboxDefault,
+          ButtonUI(
+            'Salvar',
+            onPressed: () {
+              Modular.get<SettingsCubit>().applyPreferences();
+            },
+          )..solid,
         ],
       ),
       fixedBottomWidget: Padding(
         padding: const EdgeInsets.all(24),
         child: ButtonUI(
-          'Salvar',
-          onPressed: () {},
+          'Pegar',
+          onPressed: () {
+            Modular.get<SettingsCubit>().getPreferences();
+          },
         )..solid,
       ),
     );
