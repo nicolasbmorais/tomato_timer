@@ -63,7 +63,7 @@ class BaseInputState<T extends BaseInput> extends State<T> {
       errorStyle: TextStyleFormUI.errorLabel,
       floatingLabelStyle: TextStyleFormUI.boldLabel,
       filled: true,
-      fillColor: AppColors.white,
+      fillColor: AppColors.backgroundColor,
       contentPadding: const EdgeInsets.symmetric(
         horizontal: 16,
         vertical: 8,

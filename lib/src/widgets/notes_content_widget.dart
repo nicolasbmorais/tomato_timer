@@ -39,7 +39,7 @@ class NotesContentWidget extends StatelessWidget {
                             cubit.notesModeList[index].title ?? '',
                           )..titleBold,
                           PopupMenuButton(
-                            color: AppColors.white,
+                            color: AppColors.backgroundColor,
                             elevation: 1,
                             position: PopupMenuPosition.under,
                             onSelected: _setRoutes,

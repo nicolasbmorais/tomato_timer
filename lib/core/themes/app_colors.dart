@@ -22,9 +22,6 @@ class AppColors {
   static Color get black => const Color(0xFF232323);
 
   /// Construtor privado para impedir instanciação
-  static Color get white => const Color(0xFFFFFFFF);
-
-  /// Construtor privado para impedir instanciação
   static Color get transparent => const Color(0x00000000);
 
   /// Construtor privado para impedir instanciação

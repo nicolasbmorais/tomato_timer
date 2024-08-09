@@ -34,9 +34,9 @@ class CheckBoxButton extends StatelessWidget {
             fillColor: WidgetStateProperty.resolveWith<Color>(
               (Set<WidgetState> states) {
                 if (states.contains(WidgetState.disabled)) {
-                  return AppColors.white;
+                  return AppColors.backgroundColor;
                 }
-                return AppColors.white;
+                return AppColors.orangePrimary;
               },
             ),
           ),
@@ -49,12 +49,12 @@ class CheckBoxButton extends StatelessWidget {
             text,
             color: AppColors.black,
           )..body1,
-          checkColor: AppColors.green,
+          checkColor: AppColors.backgroundColor,
           onChanged: onChanged,
           onReset: () => onReset,
           side: WidgetStateBorderSide.resolveWith(
             (Set<WidgetState> states) {
-              return BorderSide(color: AppColors.black);
+              return BorderSide(color: AppColors.backgroundColor);
             },
           ),
           enabled: enabled,
@@ -73,7 +73,7 @@ class CheckBoxButton extends StatelessWidget {
           ),
           shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.all(
-              Radius.circular(2),
+              Radius.circular(3),
             ),
           ),
         ),

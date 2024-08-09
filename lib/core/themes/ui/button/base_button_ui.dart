@@ -42,7 +42,7 @@ abstract class BaseButtonUI extends StatelessWidget {
               textAlign: TextAlign.center,
             )..body1,
           ),
-      height: 52,
+      height: 40,
       width: width,
       borderSideColor: AppColors.orangePrimary,
       onPressed: onPressed,
@@ -57,11 +57,11 @@ abstract class BaseButtonUI extends StatelessWidget {
           Container(
             child: TypographyUI(
               text,
-              color: AppColors.white,
+              color: AppColors.backgroundColor,
               textAlign: TextAlign.center,
             )..body1,
           ),
-      height: 52,
+      height: 40,
       width: width,
       backgroundColor: AppColors.orangePrimary,
       onPressed: onPressed,
@@ -73,7 +73,7 @@ abstract class BaseButtonUI extends StatelessWidget {
   void get textButton {
     button = TextButtonUI(
       text: text,
-      height: 52,
+      height: 40,
       textColor: color ?? AppColors.black,
       onPressed: onPressed,
     );
@@ -89,7 +89,7 @@ abstract class BaseButtonUI extends StatelessWidget {
           Container(
             child: TypographyUI(
               text,
-              color: AppColors.white,
+              color: AppColors.backgroundColor,
               textAlign: TextAlign.center,
             )..body1,
           ),

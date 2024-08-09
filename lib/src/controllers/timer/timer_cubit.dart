@@ -1,20 +1,24 @@
 import 'package:bloc/bloc.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:stop_watch_timer/stop_watch_timer.dart';
+import 'package:tomato_timer/src/controllers/settings/settings_cubit.dart';
 
 part 'timer_state.dart';
 
 class TimerCubit extends Cubit<TimerState> {
-  TimerCubit() : super(TimerInitial()){
-//TODO: iniciar dados aqui
-  }
+  TimerCubit() : super(TimerInitial());
 
   int lapCount = 0;
   bool _watchTimerIsListen = false;
 
-  StopWatchTimer stopWatchTimer = StopWatchTimer(
-    mode: StopWatchMode.countDown,
-    presetMillisecond: StopWatchTimer.getMilliSecFromSecond(5),
-  );
+  final SettingsCubit _settingsCubit = Modular.get<SettingsCubit>();
+
+  StopWatchTimer get stopWatchTimer => StopWatchTimer(
+        mode: StopWatchMode.countDown,
+        presetMillisecond: StopWatchTimer.getMilliSecFromSecond(
+          _settingsCubit.settingsModel.focusDuration ?? 5,
+        ),
+      );
 
   Future<void> disposeTimer() async {
     await stopWatchTimer.dispose();

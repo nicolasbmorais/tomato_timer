@@ -4,8 +4,8 @@ class UserSettingsModel {
   UserSettingsModel({
     this.showCompleteNotification,
     this.focusDuration,
-    this.longBreak,
     this.shortBreak,
+    this.longBreak,
     this.timerSound,
   });
 
@@ -16,8 +16,8 @@ class UserSettingsModel {
       UserSettingsModel(
         showCompleteNotification: json['showCompleteNotification'] as bool,
         focusDuration: json['focusDuration'] as int,
-        longBreak: json['longBreak'] as int,
         shortBreak: json['shortBreak'] as int,
+        longBreak: json['longBreak'] as int,
         timerSound: json['timerSound'] as String,
       );
 
@@ -25,16 +25,16 @@ class UserSettingsModel {
     return UserSettingsModel(
       showCompleteNotification: false,
       focusDuration: 5,
-      longBreak: 10,
       shortBreak: 5,
+      longBreak: 10,
       timerSound: '',
     );
   }
 
   bool? showCompleteNotification;
   int? focusDuration;
-  int? longBreak;
   int? shortBreak;
+  int? longBreak;
   String? timerSound;
 
   String toRawJson() => json.encode(toJson());
@@ -42,8 +42,8 @@ class UserSettingsModel {
   Map<String, dynamic> toJson() => {
         'showCompleteNotification': showCompleteNotification,
         'focusDuration': focusDuration,
-        'longBreak': longBreak,
         'shortBreak': shortBreak,
+        'longBreak': longBreak,
         'timerSound': timerSound,
       };
 }
