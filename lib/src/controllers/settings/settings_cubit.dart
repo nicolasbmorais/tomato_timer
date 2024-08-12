@@ -22,20 +22,21 @@ class SettingsCubit extends Cubit<SettingsState> {
   Future<void> applyPreferences() async {
     emit(SettingsLoading());
     try {
-      await Future.delayed(const Duration(seconds: 2), () {});
-      final data = UserSettingsModel(
-        showCompleteNotification: false,
-        focusDuration: int.tryParse(focusDuration) ?? 5,
-        shortBreak: int.tryParse(shortBreak) ?? 5,
-        longBreak: int.tryParse(longBreak) ?? 10,
-        timerSound: '',
-      );
+      await Future.delayed(const Duration(seconds: 2), () async {
+        final data = UserSettingsModel(
+          showCompleteNotification: false,
+          focusDuration: int.tryParse(focusDuration) ?? 5,
+          shortBreak: int.tryParse(shortBreak) ?? 5,
+          longBreak: int.tryParse(longBreak) ?? 10,
+          timerSound: '',
+        );
 
-      final convert = jsonEncode(data.toJson());
-      await _prefs.setString('userPrefs', convert);
+        final convert = jsonEncode(data.toJson());
+        await _prefs.setString('userPrefs', convert);
+      });
       emit(SettingsLoaded());
     } catch (e) {
-      print(e);
+      emit(SettingsError());
     }
   }
 

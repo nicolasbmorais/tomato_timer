@@ -6,6 +6,7 @@ import 'package:tomato_timer/core/themes/ui/form/form_ui.dart';
 import 'package:tomato_timer/core/themes/ui/form/inputs/checkbox/checkbox_ui.dart';
 import 'package:tomato_timer/core/themes/ui/form/inputs/dropdown/dropdown_ui.dart';
 import 'package:tomato_timer/src/controllers/settings/settings_cubit.dart';
+import 'package:tomato_timer/src/controllers/timer/timer_cubit.dart';
 
 class SettingsPage extends StatefulWidget {
   const SettingsPage({super.key});
@@ -106,9 +107,22 @@ class _SettingsPageState extends State<SettingsPage> {
             child: ButtonUI(
               '',
               body: state is SettingsLoading
-                  ? const CircularProgressIndicator()
+                  ? SizedBox(
+                      height: 20,
+                      width: 20,
+                      child: CircularProgressIndicator(
+                        color: AppColors.black,
+                        strokeWidth: 3,
+                      ),
+                    )
                   : TypographyUI('Salvar'),
-              onPressed: cubit.applyPreferences,
+              onPressed: () async {
+                await cubit.applyPreferences().then(
+                      (_) => Modular.get<TimerCubit>().setTimerValue(
+                        cubit.settingsModel.focusDuration!,
+                      ),
+                    );
+              },
             )..solid,
           ),
         );
