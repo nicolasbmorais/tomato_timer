@@ -70,7 +70,7 @@ class _HomePageState extends State<HomePage> {
                     'Adicionar notas',
                     color: AppColors.orangePrimary,
                     onPressed: () {
-                      Modular.to.pushNamed(AppRouting.homePage);
+                      Modular.to.pushNamed(AppRouting.notesPage);
                     },
                   )..textButton,
                 ],

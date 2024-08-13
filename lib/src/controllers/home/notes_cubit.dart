@@ -1,10 +1,10 @@
 import 'package:bloc/bloc.dart';
 import 'package:tomato_timer/src/models/notes_model.dart';
 
-part 'home_state.dart';
+part 'notes_state.dart';
 
-class HomeCubit extends Cubit<HomeState> {
-  HomeCubit() : super(HomeInitial());
+class NotesCubit extends Cubit<NotesState> {
+  NotesCubit() : super(NotesInitial());
 
   List<NotesModel> notesModeList = [];
 
@@ -14,11 +14,11 @@ class HomeCubit extends Cubit<HomeState> {
       description: description,
     );
     notesModeList.add(newNote);
-    emit(HomeLoaded());
+    emit(NotesLoaded());
   }
 
   void removeNote(int index) {
     notesModeList.removeAt(index);
-    emit(HomeLoaded());
+    emit(NotesLoaded());
   }
 }

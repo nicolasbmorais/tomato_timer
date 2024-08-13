@@ -11,7 +11,7 @@ class TimerCubit extends Cubit<TimerState> {
 
   StopWatchTimer stopWatchTimer = StopWatchTimer(
     mode: StopWatchMode.countDown,
-    presetMillisecond: StopWatchTimer.getMilliSecFromSecond(5),
+    presetMillisecond: StopWatchTimer.getMilliSecFromMinute(25),
   );
 
   Future<void> disposeTimer() async {
@@ -56,3 +56,9 @@ class TimerCubit extends Cubit<TimerState> {
     emit(TimerLoaded());
   }
 }
+
+// TODO: OBS:: proximos passos 
+// Na pausa longa colocar esse componente: https://www.figma.com/design/WoYG7xNjcgUvrDlsp9YXjS/Pomodoro-App---Chrome-Extension-(Community)?node-id=1-1030&t=BlCFMQQ2Dk0vBwhy-0
+// Ao terminar os 4 ciclos jogar direto pra tela de Pausa longa
+//Ao terminar cada ciclo colocar notificacao com som
+
