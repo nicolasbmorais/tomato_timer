@@ -7,6 +7,7 @@ class NotesCubit extends Cubit<NotesState> {
   NotesCubit() : super(NotesInitial());
 
   List<NotesModel> notesModeList = [];
+  bool isSelected = false;
 
   void saveNotes({required String title, required String description}) {
     final newNote = NotesModel(
@@ -19,6 +20,11 @@ class NotesCubit extends Cubit<NotesState> {
 
   void removeNote(int index) {
     notesModeList.removeAt(index);
+    emit(NotesLoaded());
+  }
+
+  void selectNote({required bool? value}) {
+    isSelected = value!;
     emit(NotesLoaded());
   }
 }

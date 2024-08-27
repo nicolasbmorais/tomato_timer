@@ -68,7 +68,7 @@ class _TakeShortBreakPageState extends State<TakeShortBreakPage> {
             'Continue focando',
             onPressed: () {
               cubit.start(context);
-              Modular.to.popUntil(ModalRoute.withName(AppRouting.homePage));
+              Modular.to.popUntil(ModalRoute.withName(AppRouting.timerPage));
             },
           )..outlined,
           const SizedBox(height: 24),

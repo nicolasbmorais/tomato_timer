@@ -49,7 +49,7 @@ class TemplateUI extends StatelessWidget {
                       padding: EdgeInsets.only(
                         left: leftPadding ?? 24,
                         right: rightPadding ?? 24,
-                        top: topPadding ?? 24,
+                        top: topPadding ?? 16,
                         bottom: bottomPading ?? 0,
                       ),
                       child: body,

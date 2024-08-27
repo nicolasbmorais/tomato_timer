@@ -46,6 +46,7 @@ class _SettingsPageState extends State<SettingsPage> {
                   hintText: '',
                   label: 'Duração do Pomodoro em minutos',
                   initialValue: cubit.settingsModel.focusDuration.toString(),
+                  keyboardType: TextInputType.number,
                   onChanged: (value) {
                     cubit.focusDuration = value!;
                   },
@@ -56,6 +57,7 @@ class _SettingsPageState extends State<SettingsPage> {
                   hintText: '',
                   label: 'Duração do intervalo curto em minutos',
                   initialValue: cubit.settingsModel.shortBreak.toString(),
+                  keyboardType: TextInputType.number,
                   onChanged: (value) {
                     cubit.shortBreak = value!;
                   },
@@ -66,6 +68,7 @@ class _SettingsPageState extends State<SettingsPage> {
                   hintText: '',
                   label: 'Duração do intervalo longo em minutos',
                   initialValue: cubit.settingsModel.longBreak.toString(),
+                  keyboardType: TextInputType.number,
                   onChanged: (value) {
                     cubit.longBreak = value!;
                   },

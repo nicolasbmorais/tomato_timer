@@ -16,7 +16,7 @@ class _InitialPageState extends State<InitialPage> {
   @override
   void initState() {
     super.initState();
-    
+
     final timerCubit = Modular.get<TimerCubit>();
     final settingsCubit = Modular.get<SettingsCubit>();
 
@@ -37,7 +37,7 @@ class _InitialPageState extends State<InitialPage> {
           const SizedBox(height: 24),
           ButtonUI(
             'Iniciar o ciclo pomodoro',
-            onPressed: () => Modular.to.pushNamed(AppRouting.homePage),
+            onPressed: () => Modular.to.pushNamed(AppRouting.timerPage),
           )..solid,
         ],
       ),

@@ -3,7 +3,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:tomato_timer/app/app_routing.dart';
 import 'package:tomato_timer/core/core.dart';
 import 'package:tomato_timer/core/themes/ui/form/form_ui.dart';
-import 'package:tomato_timer/src/controllers/home/notes_cubit.dart';
+import 'package:tomato_timer/src/controllers/notes/notes_cubit.dart';
 
 class NotesPage extends StatelessWidget {
   const NotesPage({super.key});
@@ -16,13 +16,14 @@ class NotesPage extends StatelessWidget {
 
     return TemplateUI(
       appBar: AppBar(
+        centerTitle: true,
         backgroundColor: AppColors.backgroundColor,
+        title: TypographyUI('Notas')..h3Bold,
       ),
       body: FormUI(
         formKey: formKey,
         child: Column(
           children: [
-            TypographyUI('Notas')..h2Bold,
             TextFieldUI(
               name: 'title',
               label: 'Título',
@@ -37,9 +38,7 @@ class NotesPage extends StatelessWidget {
                 return null;
               },
             ),
-            const SizedBox(
-              height: 24,
-            ),
+            const SizedBox(height: 24),
             TextFieldUI(
               name: 'body',
               label: 'Descrição',
@@ -68,8 +67,8 @@ class NotesPage extends StatelessWidget {
               description: descriptionEC.text,
             );
             Modular.to.pushNamedAndRemoveUntil(
-              AppRouting.homePage,
-              ModalRoute.withName(AppRouting.homePage),
+              AppRouting.timerPage,
+              ModalRoute.withName(AppRouting.timerPage),
             );
           },
         )..solid,

@@ -28,7 +28,7 @@ class AppColors {
   static Color get dangerSystem => const Color(0xFFFF0000);
 
   /// Construtor privado para impedir instanciação
-  static Color get green => const Color(0xFF69D470);
+  static Color get green => const Color(0xFF019E40);
 
   /// Construtor privado para impedir instanciação
   static Color get blue => const Color(0xFF1B83E3);
