@@ -18,17 +18,19 @@ class SettingsCubit extends Cubit<SettingsState> {
   String shortBreak = '';
   String longBreak = '';
   bool showCompleteNotification = true;
+  bool restartAutomatically = true;
 
   Future<void> applyPreferences() async {
     emit(SettingsLoading());
     try {
       await Future.delayed(const Duration(seconds: 1), () async {
         settingsModel = UserSettingsModel(
-          showCompleteNotification: false,
           focusDuration: int.tryParse(focusDuration) ?? 25,
           shortBreak: int.tryParse(shortBreak) ?? 5,
           longBreak: int.tryParse(longBreak) ?? 20,
           timerSound: '',
+          showCompleteNotification: false,
+          restartAutomatically: restartAutomatically,
         );
 
         final convert = jsonEncode(settingsModel.toJson());

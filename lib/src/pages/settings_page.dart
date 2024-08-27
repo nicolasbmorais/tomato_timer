@@ -99,6 +99,13 @@ class _SettingsPageState extends State<SettingsPage> {
                     cubit.showCompleteNotification = val ?? true;
                   },
                 )..checkboxDefault,
+                CheckBoxUI(
+                  text: 'Reiniciar automaticamente',
+                  initialValue: cubit.restartAutomatically,
+                  onChanged: (val) {
+                    cubit.restartAutomatically = val ?? true;
+                  },
+                )..checkboxDefault,
               ],
             ),
           ),

@@ -21,13 +21,14 @@ class _TakeShortBreakPageState extends State<TakeShortBreakPage> {
   @override
   void initState() {
     super.initState();
-    stopWatchTimer.onStartTimer();
     stopWatchTimer = StopWatchTimer(
       mode: StopWatchMode.countDown,
       presetMillisecond: StopWatchTimer.getMilliSecFromMinute(
         settingsCubit.settingsModel.shortBreak ?? 5,
       ),
     );
+
+    stopWatchTimer.onStartTimer();
   }
 
   @override
@@ -39,7 +40,9 @@ class _TakeShortBreakPageState extends State<TakeShortBreakPage> {
   @override
   Widget build(BuildContext context) {
     return TemplateUI(
-      appBar: const DefaultAppBarUI(),
+      appBar: const DefaultAppBarUI(
+        hideLeadingIcons: true,
+      ),
       body: Column(
         children: [
           TypographyUI('Restando', color: AppColors.blue)..subheading,
@@ -64,7 +67,7 @@ class _TakeShortBreakPageState extends State<TakeShortBreakPage> {
           ButtonUI(
             'Continue focando',
             onPressed: () {
-              cubit.start();
+              cubit.start(context);
               Modular.to.popUntil(ModalRoute.withName(AppRouting.homePage));
             },
           )..outlined,

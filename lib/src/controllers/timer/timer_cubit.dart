@@ -1,5 +1,8 @@
 import 'package:bloc/bloc.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:stop_watch_timer/stop_watch_timer.dart';
+import 'package:tomato_timer/app/app_routing.dart';
 
 part 'timer_state.dart';
 
@@ -18,7 +21,7 @@ class TimerCubit extends Cubit<TimerState> {
     await stopWatchTimer.dispose();
   }
 
-  void start() {
+  void start(BuildContext context) {
     stopWatchTimer.onStartTimer();
 
     if (!_watchTimerIsListen) {
@@ -26,6 +29,9 @@ class TimerCubit extends Cubit<TimerState> {
         if (lapCount <= 4) {
           lapCount++;
           _watchTimerIsListen = true;
+        }
+        if (lapCount == 4) {
+          Modular.to.pushNamed(AppRouting.longBreakPage);
         }
         stopWatchTimer.onResetTimer();
         emit(TimerInitial());
@@ -51,14 +57,12 @@ class TimerCubit extends Cubit<TimerState> {
     emit(TimerLoading());
     stopWatchTimer = StopWatchTimer(
       mode: StopWatchMode.countDown,
-      presetMillisecond: StopWatchTimer.getMilliSecFromSecond(value),
+      presetMillisecond: StopWatchTimer.getMilliSecFromMinute(value),
     );
     emit(TimerLoaded());
   }
 }
 
 // TODO: OBS:: proximos passos 
-// Na pausa longa colocar esse componente: https://www.figma.com/design/WoYG7xNjcgUvrDlsp9YXjS/Pomodoro-App---Chrome-Extension-(Community)?node-id=1-1030&t=BlCFMQQ2Dk0vBwhy-0
-// Ao terminar os 4 ciclos jogar direto pra tela de Pausa longa
 //Ao terminar cada ciclo colocar notificacao com som
 

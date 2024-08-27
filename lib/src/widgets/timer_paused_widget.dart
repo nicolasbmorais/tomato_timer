@@ -40,7 +40,7 @@ class TimerPausedWidget extends StatelessWidget {
         const SizedBox(height: 24),
         ButtonUI(
           'Continue focando',
-          onPressed: cubit.start,
+          onPressed: () => cubit.start(context),
         )..solid,
         const SizedBox(height: 12),
         PauseButtons(
