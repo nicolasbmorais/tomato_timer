@@ -59,7 +59,7 @@ class _DropdownUIState extends BaseInputState<DropdownUI> {
         decoration: makeDecoration(),
         items: widget.itens,
         enabled: widget.enabled,
-        dropdownColor: AppColors.white,
+        dropdownColor: AppColors.backgroundColor,
       ),
     );
   }

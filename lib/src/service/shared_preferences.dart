@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:shared_preferences/shared_preferences.dart';
 
 class SharedPreferencesService {
@@ -31,9 +29,7 @@ class SharedPreferencesService {
     await _prefs?.remove(key);
   }
 
-  // Métodos para obter valores
   String? getString(String key) {
-    log('print ${_prefs?.getString(key)}');
     return _prefs?.getString(key);
   }
 }

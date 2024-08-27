@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:tomato_timer/app/app_routing.dart';
 import 'package:tomato_timer/core/core.dart';
-import 'package:tomato_timer/src/controllers/home/home_cubit.dart';
+import 'package:tomato_timer/src/controllers/notes/notes_cubit.dart';
 
 class NotesContentWidget extends StatelessWidget {
   const NotesContentWidget({
@@ -12,16 +12,17 @@ class NotesContentWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final cubit = Modular.get<HomeCubit>();
+    final cubit = Modular.get<NotesCubit>();
 
-    return BlocBuilder<HomeCubit, HomeState>(
+    return BlocBuilder<NotesCubit, NotesState>(
       bloc: cubit,
       builder: (context, state) {
-        if (state is HomeLoaded) {
+        if (state is NotesLoaded) {
           return Column(
             children: List.generate(
               cubit.notesModeList.length,
               (index) => Container(
+                margin: const EdgeInsets.only(bottom: 16),
                 width: double.infinity,
                 decoration: BoxDecoration(
                   color: AppColors.lightGrey100,
@@ -35,11 +36,44 @@ class NotesContentWidget extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          TypographyUI(
-                            cubit.notesModeList[index].title ?? '',
-                          )..titleBold,
+                          Row(
+                            children: [
+                              SizedBox(
+                                height: 20,
+                                width: 20,
+                                child: Theme(
+                                  data: Theme.of(context).copyWith(
+                                    unselectedWidgetColor: AppColors.black,
+                                  ),
+                                  child: Checkbox(
+                                    value: cubit.isSelected,
+                                    onChanged: (bool? value) {
+                                      cubit.selectNote(value: value);
+                                    },
+                                    checkColor: AppColors.green,
+                                    activeColor: AppColors.transparent,
+                                    shape: const CircleBorder(),
+                                    side: WidgetStateBorderSide.resolveWith(
+                                      (Set<WidgetState> states) {
+                                        return BorderSide(
+                                          color: cubit.isSelected
+                                              ? AppColors.green
+                                              : AppColors.black,
+                                          width: 2,
+                                        );
+                                      },
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              const SizedBox(width: 10),
+                              TypographyUI(
+                                cubit.notesModeList[index].title ?? '',
+                              )..titleBold,
+                            ],
+                          ),
                           PopupMenuButton(
-                            color: AppColors.white,
+                            color: AppColors.backgroundColor,
                             elevation: 1,
                             position: PopupMenuPosition.under,
                             onSelected: _setRoutes,

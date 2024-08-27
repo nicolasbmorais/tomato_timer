@@ -8,17 +8,11 @@ import 'package:tomato_timer/src/controllers/timer/timer_cubit.dart';
 
 class DefaultAppBarUI extends StatelessWidget {
   const DefaultAppBarUI({
-    this.bottomPadding,
-    this.leftPadding,
-    this.rightPadding,
-    this.topPadding,
+    this.hideLeadingIcons = false,
     super.key,
   });
 
-  final double? bottomPadding;
-  final double? leftPadding;
-  final double? rightPadding;
-  final double? topPadding;
+  final bool hideLeadingIcons;
 
   @override
   Widget build(BuildContext context) {
@@ -42,19 +36,22 @@ class DefaultAppBarUI extends StatelessWidget {
                 TypographyUI('Tomato Timer')..body1Bold,
               ],
             ),
-            Row(
-              children: [
-                SvgUI(
-                  size: 20,
-                  onTap: cubit.restart,
-                )..restart,
-                const SizedBox(width: 10),
-                SvgUI(
-                  size: 20,
-                  onTap: () => Modular.to.pushNamed(AppRouting.settingsPage),
-                )..settings,
-              ],
-            ),
+            if (hideLeadingIcons)
+              const SizedBox.shrink()
+            else
+              Row(
+                children: [
+                  SvgUI(
+                    size: 20,
+                    onTap: cubit.restart,
+                  )..restart,
+                  const SizedBox(width: 10),
+                  SvgUI(
+                    size: 20,
+                    onTap: () => Modular.to.pushNamed(AppRouting.settingsPage),
+                  )..settings,
+                ],
+              ),
           ],
         ),
       ),

@@ -1,26 +1,27 @@
 import 'package:bloc/bloc.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:stop_watch_timer/stop_watch_timer.dart';
+import 'package:tomato_timer/app/app_routing.dart';
 
 part 'timer_state.dart';
 
 class TimerCubit extends Cubit<TimerState> {
-  TimerCubit() : super(TimerInitial()){
-//TODO: iniciar dados aqui
-  }
+  TimerCubit() : super(TimerInitial());
 
   int lapCount = 0;
   bool _watchTimerIsListen = false;
 
   StopWatchTimer stopWatchTimer = StopWatchTimer(
     mode: StopWatchMode.countDown,
-    presetMillisecond: StopWatchTimer.getMilliSecFromSecond(5),
+    presetMillisecond: StopWatchTimer.getMilliSecFromMinute(25),
   );
 
   Future<void> disposeTimer() async {
     await stopWatchTimer.dispose();
   }
 
-  void start() {
+  void start(BuildContext context) {
     stopWatchTimer.onStartTimer();
 
     if (!_watchTimerIsListen) {
@@ -28,6 +29,9 @@ class TimerCubit extends Cubit<TimerState> {
         if (lapCount <= 4) {
           lapCount++;
           _watchTimerIsListen = true;
+        }
+        if (lapCount == 4) {
+          Modular.to.pushNamed(AppRouting.longBreakPage);
         }
         stopWatchTimer.onResetTimer();
         emit(TimerInitial());
@@ -50,6 +54,15 @@ class TimerCubit extends Cubit<TimerState> {
   }
 
   void setTimerValue(int value) {
-    stopWatchTimer.setPresetSecondTime(value);
+    emit(TimerLoading());
+    stopWatchTimer = StopWatchTimer(
+      mode: StopWatchMode.countDown,
+      presetMillisecond: StopWatchTimer.getMilliSecFromMinute(value),
+    );
+    emit(TimerLoaded());
   }
 }
+
+// TODO: OBS:: proximos passos 
+//Ao terminar cada ciclo colocar notificacao com som
+
