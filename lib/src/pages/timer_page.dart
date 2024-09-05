@@ -17,8 +17,33 @@ class TimerPage extends StatefulWidget {
   State<TimerPage> createState() => _TimerPageState();
 }
 
-class _TimerPageState extends State<TimerPage> {
+class _TimerPageState extends State<TimerPage> with WidgetsBindingObserver {
   final cubit = Modular.get<TimerCubit>();
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addObserver(this);
+    cubit.initPlayer();
+  }
+
+  @override
+  void dispose() {
+    cubit.player.dispose();
+    WidgetsBinding.instance.removeObserver(this);
+    super.dispose();
+  }
+
+  // @override
+  // void didChangeAppLifecycleState(AppLifecycleState state) {
+  //   super.didChangeAppLifecycleState(state);
+  //   if (state == AppLifecycleState.paused) {
+  //     // Release the player's resources when not in use. We use "stop" so that
+  //     // if the app resumes later, it will still remember what position to
+  //     // resume from.
+  //     cubit.player.stop();
+  //   }
+  // }
 
   @override
   Widget build(BuildContext context) {
