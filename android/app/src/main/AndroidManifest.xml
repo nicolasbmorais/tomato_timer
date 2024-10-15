@@ -1,5 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="nicolas.bruno.morais.tomato_timer">
+   <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+   
    <application
         android:label="${appName}"
         android:name="${applicationName}"

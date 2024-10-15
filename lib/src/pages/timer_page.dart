@@ -21,13 +21,6 @@ class _TimerPageState extends State<TimerPage> with WidgetsBindingObserver {
   final cubit = Modular.get<TimerCubit>();
 
   @override
-  void initState() {
-    super.initState();
-    WidgetsBinding.instance.addObserver(this);
-    cubit.initPlayer();
-  }
-
-  @override
   void dispose() {
     cubit.player.dispose();
     WidgetsBinding.instance.removeObserver(this);

@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -59,37 +61,20 @@ class TimerCubit extends Cubit<TimerState> {
     emit(TimerLoading());
     stopWatchTimer = StopWatchTimer(
       mode: StopWatchMode.countDown,
-      presetMillisecond: StopWatchTimer.getMilliSecFromMinute(value),
+      presetMillisecond: StopWatchTimer.getMilliSecFromSecond(value),
     );
     emit(TimerLoaded());
   }
 
-  void playSound() {
-    player.play();
-    Future.delayed(const Duration(seconds: 4), player.pause);
-  }
+  Future<void> playSound() async {
+    await AudioPlayer.clearAssetCache();
+    await player.setAsset('assets/sounds/marimba.mp3');
 
-  Future<void> initPlayer() async {
-    player.playbackEventStream.listen(
-      (event) {},
-      onError: (Object e, StackTrace stackTrace) {
-        debugPrint('A stream error occurred: $e');
-      },
-    );
-    try {
-      // await player.setAudioSource(AudioSource.uri(
-      //   Uri.parse('assets/sounds/marimba.mp3'),
-      // ) TODO: nao esta funcionando audio local
-      AudioSource.uri(
-        Uri.parse(
-          'https://s3.amazonaws.com/scifri-episodes/scifri20181123-episode.mp3',
-        ),
-      );
-    } on PlayerException catch (e) {
-      print('Error loading audio source: $e');
-    }
+    unawaited(player.play());
+    Future.delayed(const Duration(seconds: 4), player.pause);
   }
 }
 
 // TODO: OBS:: proximos passos 
 //Ao terminar cada ciclo colocar som
+// Ver se o app roda em segundo plano
