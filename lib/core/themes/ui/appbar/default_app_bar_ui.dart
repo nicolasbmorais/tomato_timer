@@ -43,7 +43,7 @@ class DefaultAppBarUI extends StatelessWidget {
                 children: [
                   SvgUI(
                     size: 20,
-                    onTap: cubit.restart,
+                    onTap: cubit.restartTimer,
                   )..restart,
                   const SizedBox(width: 10),
                   SvgUI(

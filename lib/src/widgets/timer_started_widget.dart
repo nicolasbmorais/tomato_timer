@@ -25,7 +25,7 @@ class TimerStartedWidget extends StatelessWidget {
         const SizedBox(height: 24),
         ButtonUI(
           'Pausar',
-          onPressed: cubit.stop,
+          onPressed: cubit.stopTimer,
         )..solid,
         const SizedBox(height: 12),
         PauseButtons(

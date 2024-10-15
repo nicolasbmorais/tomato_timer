@@ -86,7 +86,7 @@ class _TakeLongBreakPageState extends State<TakeLongBreakPage> {
           else
             GestureDetector(
               onTap: () {
-                cubit.restart();
+                cubit.restartTimer();
                 Modular.to.popUntil(ModalRoute.withName(AppRouting.timerPage));
               },
               child: Row(

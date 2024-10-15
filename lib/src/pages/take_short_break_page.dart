@@ -67,7 +67,7 @@ class _TakeShortBreakPageState extends State<TakeShortBreakPage> {
           ButtonUI(
             'Continue focando',
             onPressed: () {
-              cubit.start(context);
+              cubit.startTimer(context);
               Modular.to.popUntil(ModalRoute.withName(AppRouting.timerPage));
             },
           )..outlined,

@@ -22,7 +22,7 @@ class PauseButtons extends StatelessWidget {
           'Pequeno intervalo',
           isExpanded: true,
           onPressed: () {
-            cubit.stop();
+            cubit.stopTimer();
             onPressedBtn1();
           },
         )..outlinedCustom(
@@ -33,7 +33,7 @@ class PauseButtons extends StatelessWidget {
           'Longo intervalo',
           isExpanded: true,
           onPressed: () {
-            cubit.stop();
+            cubit.stopTimer();
             onPressedBtn2();
           },
         )..outlinedCustom(

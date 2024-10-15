@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -50,9 +52,11 @@ class _TimerPageState extends State<TimerPage> with WidgetsBindingObserver {
               const SizedBox(height: 16),
               FlutterStepIndicator(
                 height: 20,
-                list: const [0, 1, 2, 3],
-                onChange: (i) {},
-                page: cubit.lapCount,
+                list: const [1, 2, 3, 4],
+                onChange: (i) {
+                  log('print $i');
+                },
+                page: cubit.lapCount - 1,
                 progressColor: AppColors.orangePrimary,
                 negativeColor: AppColors.lightGrey200,
                 positiveColor: AppColors.orangePrimary,

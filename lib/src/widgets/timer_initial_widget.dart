@@ -22,7 +22,7 @@ class TimerInitialWidget extends StatelessWidget {
         const SizedBox(height: 24),
         ButtonUI(
           'Comece a focar',
-          onPressed: () => cubit.start(context),
+          onPressed: () => cubit.startTimer(context),
         )..outlined,
       ],
     );
