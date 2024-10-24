@@ -28,7 +28,7 @@ class UserSettingsModel {
       focusDuration: 5,
       shortBreak: 5,
       longBreak: 10,
-      timerSound: 'bip-alarm',
+      timerSound: 'Bip Alarm',
       showCompleteNotification: true,
       restartAutomatically: true,
     );

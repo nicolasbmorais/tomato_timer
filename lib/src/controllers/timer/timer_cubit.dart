@@ -1,11 +1,12 @@
 import 'dart:async';
+import 'dart:convert';
 
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_modular/flutter_modular.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:stop_watch_timer/stop_watch_timer.dart';
-import 'package:tomato_timer/src/controllers/settings/settings_cubit.dart';
+import 'package:tomato_timer/src/models/settings_model.dart';
+import 'package:tomato_timer/src/service/shared_preferences.dart';
 
 part 'timer_state.dart';
 
@@ -15,13 +16,23 @@ class TimerCubit extends Cubit<TimerState> {
   int lapCount = 0;
   bool _watchTimerIsListen = false;
   final player = AudioPlayer();
+  // final settingsCubit = Modular.get<SettingsCubit>();
 
-  StopWatchTimer stopWatchTimer = StopWatchTimer(
-    mode: StopWatchMode.countDown,
-    presetMillisecond: StopWatchTimer.getMilliSecFromMinute(25),
-  );
+  final SharedPreferencesService _prefs = SharedPreferencesService();
+  UserSettingsModel settingsModel = UserSettingsModel.empty();
 
-  final settingsCubit = Modular.get<SettingsCubit>();
+  String? focusDuration;
+  String? shortBreak;
+  String? longBreak;
+  String? timeSoundName;
+  bool showCompleteNotification = true;
+  bool restartAutomatically = true;
+
+  StopWatchTimer stopWatchTimer = StopWatchTimer();
+  // mode: StopWatchMode.countDown,
+  // presetMillisecond: StopWatchTimer.getMilliSecFromMinute(25),
+  // // TODOpreciso passar o valor do model aqui pra dentro
+  // );
 
   void startTimer(BuildContext context) {
     stopWatchTimer.onStartTimer();
@@ -73,11 +84,55 @@ class TimerCubit extends Cubit<TimerState> {
 
   Future<void> playTimerSound() async {
     await AudioPlayer.clearAssetCache();
-    final sound = settingsCubit.settingsModel.timerSound;
+    final sound = settingsModel.timerSound;
     await player.setAsset('assets/sounds/$sound.mp3');
 
     unawaited(player.play());
     Future.delayed(const Duration(seconds: 5), player.pause);
+  }
+
+  Future<void> applyPreferences() async {
+    try {
+      emit(TimerLoading());
+
+      await Future.delayed(const Duration(seconds: 1), () async {
+        final body = UserSettingsModel(
+          focusDuration: int.parse(focusDuration ?? '13'),
+          shortBreak: int.parse(shortBreak ?? '13'),
+          longBreak: int.parse(longBreak ?? '13'),
+          timerSound: timeSoundName ?? 'Bip Alarm',
+          showCompleteNotification: showCompleteNotification,
+          restartAutomatically: restartAutomatically,
+        );
+
+        final convert = jsonEncode(body.toJson());
+        await _prefs.setString('userPrefs', convert);
+
+        await getPreferences();
+        
+        setTimerValue(body.focusDuration);
+      });
+
+      emit(TimerLoaded());
+    } catch (e) {
+      emit(TimerCanceled());
+    }
+  }
+
+  Future<void> getPreferences() async {
+    emit(TimerLoading());
+
+    final data = _prefs.getString('userPrefs') ?? '';
+    if (data.isNotEmpty) {
+      final json = jsonDecode(data) as Map<String, dynamic>;
+
+      settingsModel = UserSettingsModel.fromJson(json);
+    }
+    emit(SettingsLoaded());
+  }
+
+  void apagar() {
+    _prefs.clear();
   }
 }
 

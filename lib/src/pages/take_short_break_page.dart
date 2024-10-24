@@ -3,7 +3,6 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:stop_watch_timer/stop_watch_timer.dart';
 import 'package:tomato_timer/app/app_routing.dart';
 import 'package:tomato_timer/core/core.dart';
-import 'package:tomato_timer/src/controllers/settings/settings_cubit.dart';
 import 'package:tomato_timer/src/controllers/timer/timer_cubit.dart';
 
 class TakeShortBreakPage extends StatefulWidget {
@@ -15,7 +14,6 @@ class TakeShortBreakPage extends StatefulWidget {
 
 class _TakeShortBreakPageState extends State<TakeShortBreakPage> {
   final cubit = Modular.get<TimerCubit>();
-  final settingsCubit = Modular.get<SettingsCubit>();
   StopWatchTimer stopWatchTimer = StopWatchTimer(mode: StopWatchMode.countDown);
 
   @override
@@ -24,7 +22,7 @@ class _TakeShortBreakPageState extends State<TakeShortBreakPage> {
     stopWatchTimer = StopWatchTimer(
       mode: StopWatchMode.countDown,
       presetMillisecond: StopWatchTimer.getMilliSecFromMinute(
-        settingsCubit.settingsModel.shortBreak,
+        cubit.settingsModel.shortBreak,
       ),
     );
 

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:tomato_timer/app/app_routing.dart';
 import 'package:tomato_timer/core/core.dart';
-import 'package:tomato_timer/src/controllers/settings/settings_cubit.dart';
 import 'package:tomato_timer/src/controllers/timer/timer_cubit.dart';
 
 class InitialPage extends StatefulWidget {
@@ -18,9 +17,8 @@ class _InitialPageState extends State<InitialPage> {
     super.initState();
 
     final timerCubit = Modular.get<TimerCubit>();
-    final settingsCubit = Modular.get<SettingsCubit>();
 
-    timerCubit.setTimerValue(settingsCubit.settingsModel.focusDuration);
+    timerCubit.setTimerValue(timerCubit.settingsModel.focusDuration);
   }
 
   @override

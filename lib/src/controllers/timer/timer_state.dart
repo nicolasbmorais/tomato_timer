@@ -13,3 +13,11 @@ final class TimerPaused extends TimerState {}
 final class TimerStarted extends TimerState {}
 
 final class TimerCanceled extends TimerState {}
+
+final class SettingsInitial extends TimerState {}
+
+final class SettingsLoading extends TimerState {}
+
+final class SettingsLoaded extends TimerState {}
+
+final class SettingsError extends TimerState {}

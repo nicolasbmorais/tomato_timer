@@ -5,7 +5,6 @@ import 'package:tomato_timer/core/core.dart';
 import 'package:tomato_timer/core/themes/ui/form/form_ui.dart';
 import 'package:tomato_timer/core/themes/ui/form/inputs/checkbox/checkbox_ui.dart';
 import 'package:tomato_timer/core/themes/ui/form/inputs/dropdown/dropdown_ui.dart';
-import 'package:tomato_timer/src/controllers/settings/settings_cubit.dart';
 import 'package:tomato_timer/src/controllers/timer/timer_cubit.dart';
 
 class SettingsPage extends StatefulWidget {
@@ -16,7 +15,7 @@ class SettingsPage extends StatefulWidget {
 }
 
 class _SettingsPageState extends State<SettingsPage> {
-  final cubit = Modular.get<SettingsCubit>();
+  final cubit = Modular.get<TimerCubit>();
   final formKey = FormUI.generateKey;
 
   @override
@@ -27,7 +26,7 @@ class _SettingsPageState extends State<SettingsPage> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<SettingsCubit, SettingsState>(
+    return BlocBuilder<TimerCubit, TimerState>(
       bloc: cubit,
       builder: (context, state) {
         return TemplateUI(
@@ -48,7 +47,7 @@ class _SettingsPageState extends State<SettingsPage> {
                   initialValue: cubit.settingsModel.focusDuration.toString(),
                   keyboardType: TextInputType.number,
                   onChanged: (value) {
-                    cubit.focusDuration = value!;
+                    cubit.focusDuration = value;
                   },
                 ),
                 const SizedBox(height: 24),
@@ -59,7 +58,7 @@ class _SettingsPageState extends State<SettingsPage> {
                   initialValue: cubit.settingsModel.shortBreak.toString(),
                   keyboardType: TextInputType.number,
                   onChanged: (value) {
-                    cubit.shortBreak = value!;
+                    cubit.shortBreak = value;
                   },
                 ),
                 const SizedBox(height: 24),
@@ -70,7 +69,7 @@ class _SettingsPageState extends State<SettingsPage> {
                   initialValue: cubit.settingsModel.longBreak.toString(),
                   keyboardType: TextInputType.number,
                   onChanged: (value) {
-                    cubit.longBreak = value!;
+                    cubit.longBreak = value;
                   },
                 ),
                 const SizedBox(height: 24),
@@ -79,18 +78,17 @@ class _SettingsPageState extends State<SettingsPage> {
                   label: 'Som do temporizador',
                   hintText: cubit.settingsModel.timerSound,
                   width: double.infinity,
-                  onChanged: (sound) => cubit.timeSoundName = sound!,
+                  onChanged: (sound) => cubit.timeSoundName = sound,
+                  validator: (value) {
+                    return null;
+                  },
                   itens: [
                     DropdownUI.item(
-                      value: 'none',
-                      text: 'Nenhum',
-                    ),
-                    DropdownUI.item(
-                      value: 'bip-alarm',
+                      value: 'Bip Alarm',
                       text: 'Bip Alarm',
                     ),
                     DropdownUI.item(
-                      value: 'clock-alarm',
+                      value: 'Clock Alarm',
                       text: 'Clock Alarm',
                     ),
                   ],
@@ -130,11 +128,7 @@ class _SettingsPageState extends State<SettingsPage> {
                     )
                   : TypographyUI('Salvar'),
               onPressed: () async {
-                await cubit.applyPreferences().then(
-                      (_) => Modular.get<TimerCubit>().setTimerValue(
-                        cubit.settingsModel.focusDuration,
-                      ),
-                    );
+                await cubit.applyPreferences();
               },
             )..solid,
           ),

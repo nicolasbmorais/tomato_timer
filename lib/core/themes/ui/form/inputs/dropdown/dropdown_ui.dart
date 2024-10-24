@@ -8,7 +8,7 @@ class DropdownUI extends BaseInput {
   const DropdownUI({
     required super.name,
     required super.hintText,
-    this.validators = const [],
+    required this.validator,
     super.onChanged,
     super.label,
     super.suffixIcon,
@@ -21,7 +21,7 @@ class DropdownUI extends BaseInput {
   });
 
   final List<DropdownMenuItem<String>> itens;
-  final List<String? Function(String?)> validators;
+  final String? Function(String?)? validator;
   final double? width;
 
   static const List<DropdownMenuItem<String>> defaultItens = [];
@@ -51,6 +51,7 @@ class _DropdownUIState extends BaseInputState<DropdownUI> {
       width: widget.width,
       child: FormBuilderDropdown(
         focusNode: focusNode,
+        validator: widget.validator,
         isDense: false,
         name: widget.name,
         onChanged: widget.onChanged,

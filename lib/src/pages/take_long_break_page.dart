@@ -3,7 +3,6 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:stop_watch_timer/stop_watch_timer.dart';
 import 'package:tomato_timer/app/app_routing.dart';
 import 'package:tomato_timer/core/core.dart';
-import 'package:tomato_timer/src/controllers/settings/settings_cubit.dart';
 import 'package:tomato_timer/src/controllers/timer/timer_cubit.dart';
 
 class TakeLongBreakPage extends StatefulWidget {
@@ -14,7 +13,7 @@ class TakeLongBreakPage extends StatefulWidget {
 }
 
 class _TakeLongBreakPageState extends State<TakeLongBreakPage> {
-  final settingsCubit = Modular.get<SettingsCubit>();
+  final settingsCubit = Modular.get<TimerCubit>();
   StopWatchTimer stopWatchTimer = StopWatchTimer(mode: StopWatchMode.countDown);
   late bool isRestartAutomatically;
 
