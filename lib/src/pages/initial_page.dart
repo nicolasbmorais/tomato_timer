@@ -20,7 +20,7 @@ class _InitialPageState extends State<InitialPage> {
     final timerCubit = Modular.get<TimerCubit>();
     final settingsCubit = Modular.get<SettingsCubit>();
 
-    timerCubit.setTimerValue(settingsCubit.settingsModel.focusDuration!);
+    timerCubit.setTimerValue(settingsCubit.settingsModel.focusDuration);
   }
 
   @override

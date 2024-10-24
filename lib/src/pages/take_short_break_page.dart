@@ -24,7 +24,7 @@ class _TakeShortBreakPageState extends State<TakeShortBreakPage> {
     stopWatchTimer = StopWatchTimer(
       mode: StopWatchMode.countDown,
       presetMillisecond: StopWatchTimer.getMilliSecFromMinute(
-        settingsCubit.settingsModel.shortBreak ?? 5,
+        settingsCubit.settingsModel.shortBreak,
       ),
     );
 

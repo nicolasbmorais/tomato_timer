@@ -77,34 +77,37 @@ class _SettingsPageState extends State<SettingsPage> {
                 DropdownUI(
                   name: 'timer',
                   label: 'Som do temporizador',
-                  hintText: 'Nenhum',
+                  hintText: cubit.settingsModel.timerSound,
                   width: double.infinity,
+                  onChanged: (sound) => cubit.timeSoundName = sound!,
                   itens: [
                     DropdownUI.item(
                       value: 'none',
                       text: 'Nenhum',
                     ),
                     DropdownUI.item(
-                      value: 'soundA',
-                      text: 'Som A',
+                      value: 'bip-alarm',
+                      text: 'Bip Alarm',
                     ),
                     DropdownUI.item(
-                      value: 'soundB',
-                      text: 'Som B',
+                      value: 'clock-alarm',
+                      text: 'Clock Alarm',
                     ),
                   ],
                 ),
                 const SizedBox(height: 32),
                 CheckBoxUI(
+                  name: 'showCompleteNotification',
                   text: 'Mostrar notificação quando concluído',
-                  initialValue: cubit.showCompleteNotification,
+                  initialValue: cubit.settingsModel.showCompleteNotification,
                   onChanged: (val) {
                     cubit.showCompleteNotification = val ?? true;
                   },
                 )..checkboxDefault,
                 CheckBoxUI(
+                  name: 'restartAutomatically',
                   text: 'Reiniciar automaticamente',
-                  initialValue: cubit.restartAutomatically,
+                  initialValue: cubit.settingsModel.restartAutomatically,
                   onChanged: (val) {
                     cubit.restartAutomatically = val ?? true;
                   },
@@ -129,7 +132,7 @@ class _SettingsPageState extends State<SettingsPage> {
               onPressed: () async {
                 await cubit.applyPreferences().then(
                       (_) => Modular.get<TimerCubit>().setTimerValue(
-                        cubit.settingsModel.focusDuration!,
+                        cubit.settingsModel.focusDuration,
                       ),
                     );
               },

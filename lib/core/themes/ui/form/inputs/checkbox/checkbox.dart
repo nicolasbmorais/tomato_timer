@@ -6,6 +6,7 @@ import 'package:tomato_timer/core/core.dart';
 
 class CheckBoxButton extends StatelessWidget {
   const CheckBoxButton({
+    required this.name,
     required this.text,
     required this.onChanged,
     required this.validator,
@@ -16,6 +17,7 @@ class CheckBoxButton extends StatelessWidget {
     super.key,
   });
 
+  final String name;
   final String text;
   final bool enabled;
   final void Function(bool?)? onChanged;
@@ -44,7 +46,7 @@ class CheckBoxButton extends StatelessWidget {
         child: FormBuilderCheckbox(
           initialValue: initialValue,
           secondary: secondary,
-          name: 'checkbox',
+          name: name,
           title: TypographyUI(
             text,
             color: AppColors.black,

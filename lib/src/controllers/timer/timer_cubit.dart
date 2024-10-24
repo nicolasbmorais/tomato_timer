@@ -2,8 +2,10 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:stop_watch_timer/stop_watch_timer.dart';
+import 'package:tomato_timer/src/controllers/settings/settings_cubit.dart';
 
 part 'timer_state.dart';
 
@@ -18,6 +20,8 @@ class TimerCubit extends Cubit<TimerState> {
     mode: StopWatchMode.countDown,
     presetMillisecond: StopWatchTimer.getMilliSecFromMinute(25),
   );
+
+  final settingsCubit = Modular.get<SettingsCubit>();
 
   void startTimer(BuildContext context) {
     stopWatchTimer.onStartTimer();
@@ -69,13 +73,24 @@ class TimerCubit extends Cubit<TimerState> {
 
   Future<void> playTimerSound() async {
     await AudioPlayer.clearAssetCache();
-    await player.setAsset('assets/sounds/marimba.mp3');
+    final sound = settingsCubit.settingsModel.timerSound;
+    await player.setAsset('assets/sounds/$sound.mp3');
 
     unawaited(player.play());
-    Future.delayed(const Duration(seconds: 4), player.pause);
+    Future.delayed(const Duration(seconds: 5), player.pause);
   }
 }
 
-// TODO: OBS:: proximos passos 
-//Ao terminar cada ciclo colocar som
-// Ver se o app roda em segundo plano
+// Pomodoro App
+
+// Task 1 - ajustar layout dos botões, colocar espaçamento certo
+
+// Task 2 - rever telas de pausa
+
+// Task 3 - revisar textos e tentar colocá-los menores
+
+// Task 4 - revisar imagens e talvez trocar por outras
+
+// Possíveis melhorias - colocar idioma l18n, fazer uma versão do app para Windows, alterar nome do app
+
+// Nome pra loja: Be focus - pomodoro timer

@@ -6,6 +6,7 @@ import 'package:tomato_timer/core/themes/ui/form/inputs/checkbox/checkbox.dart';
 // ignore: must_be_immutable
 abstract class BaseCheckBoxUI extends StatelessWidget {
   BaseCheckBoxUI({
+    required this.name,
     required this.text,
     this.validator,
     this.onChanged,
@@ -16,6 +17,7 @@ abstract class BaseCheckBoxUI extends StatelessWidget {
     super.key,
   });
 
+  final String name;
   late Widget checkboxButton = const SizedBox.shrink();
   final String text;
   final void Function(bool?)? onChanged;
@@ -27,6 +29,7 @@ abstract class BaseCheckBoxUI extends StatelessWidget {
 
   void get checkboxDefault {
     checkboxButton = CheckBoxButton(
+      name: name,
       initialValue: initialValue,
       secondary: secondary,
       text: text,

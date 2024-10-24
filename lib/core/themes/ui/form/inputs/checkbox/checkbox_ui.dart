@@ -4,6 +4,7 @@ import 'package:tomato_timer/core/themes/ui/form/inputs/checkbox/base_checkbox_u
 // ignore: must_be_immutable
 class CheckBoxUI extends BaseCheckBoxUI {
   CheckBoxUI({
+    required super.name,
     required super.text,
     super.validator,
     super.onChanged,

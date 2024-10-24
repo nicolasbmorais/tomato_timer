@@ -2,12 +2,12 @@ import 'dart:convert';
 
 class UserSettingsModel {
   UserSettingsModel({
-    this.focusDuration,
-    this.shortBreak,
-    this.longBreak,
-    this.timerSound,
-    this.showCompleteNotification,
-    this.restartAutomatically,
+    required this.focusDuration,
+    required this.shortBreak,
+    required this.longBreak,
+    required this.timerSound,
+    required this.showCompleteNotification,
+    required this.restartAutomatically,
   });
 
   factory UserSettingsModel.fromRawJson(String str) =>
@@ -28,18 +28,18 @@ class UserSettingsModel {
       focusDuration: 5,
       shortBreak: 5,
       longBreak: 10,
-      timerSound: '',
-      showCompleteNotification: false,
-      restartAutomatically: false,
+      timerSound: 'bip-alarm',
+      showCompleteNotification: true,
+      restartAutomatically: true,
     );
   }
 
-  int? focusDuration;
-  int? shortBreak;
-  int? longBreak;
-  String? timerSound;
-  bool? showCompleteNotification;
-  bool? restartAutomatically;
+  int focusDuration;
+  int shortBreak;
+  int longBreak;
+  String timerSound;
+  bool showCompleteNotification;
+  bool restartAutomatically;
 
   String toRawJson() => json.encode(toJson());
 

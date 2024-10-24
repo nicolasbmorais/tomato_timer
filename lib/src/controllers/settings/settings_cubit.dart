@@ -17,6 +17,7 @@ class SettingsCubit extends Cubit<SettingsState> {
   String focusDuration = '';
   String shortBreak = '';
   String longBreak = '';
+  String timeSoundName = 'bip-alarm';
   bool showCompleteNotification = true;
   bool restartAutomatically = true;
 
@@ -24,17 +25,19 @@ class SettingsCubit extends Cubit<SettingsState> {
     emit(SettingsLoading());
     try {
       await Future.delayed(const Duration(seconds: 1), () async {
-        settingsModel = UserSettingsModel(
-          focusDuration: int.tryParse(focusDuration) ?? 25,
-          shortBreak: int.tryParse(shortBreak) ?? 5,
-          longBreak: int.tryParse(longBreak) ?? 20,
-          timerSound: '',
-          showCompleteNotification: false,
-          restartAutomatically: restartAutomatically,
+        final convert = jsonEncode(
+          UserSettingsModel(
+            focusDuration: int.tryParse(focusDuration) ?? 25,
+            shortBreak: int.tryParse(shortBreak) ?? 5,
+            longBreak: int.tryParse(longBreak) ?? 20,
+            timerSound: timeSoundName,
+            showCompleteNotification: showCompleteNotification,
+            restartAutomatically: restartAutomatically,
+          ).toJson(),
         );
 
-        final convert = jsonEncode(settingsModel.toJson());
         await _prefs.setString('userPrefs', convert);
+        await getPreferences();
       });
       emit(SettingsLoaded());
     } catch (e) {

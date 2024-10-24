@@ -24,14 +24,13 @@ class _TakeLongBreakPageState extends State<TakeLongBreakPage> {
     stopWatchTimer = StopWatchTimer(
       mode: StopWatchMode.countDown,
       presetMillisecond: StopWatchTimer.getMilliSecFromMinute(
-        settingsCubit.settingsModel.longBreak ?? 5,
+        settingsCubit.settingsModel.longBreak,
       ),
     );
 
     stopWatchTimer.onStartTimer();
 
-    isRestartAutomatically =
-        settingsCubit.settingsModel.restartAutomatically ?? false;
+    isRestartAutomatically = settingsCubit.settingsModel.restartAutomatically;
   }
 
   @override
