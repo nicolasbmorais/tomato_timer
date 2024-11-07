@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tomato_timer/core/themes/ui/button/base_button_ui.dart';
 
-/// Textos padrões do projeot
 //ignore: must_be_immutable
 class ButtonUI extends BaseButtonUI {
   /// Construtor padrão
@@ -32,7 +31,7 @@ class ButtonUI extends BaseButtonUI {
     if (!isExpanded) {
       return;
     }
-    button = Expanded(
+    button = Flexible(
       child: button,
     );
   }

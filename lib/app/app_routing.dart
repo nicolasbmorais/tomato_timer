@@ -34,7 +34,7 @@ class AppRouting {
       )
       ..child(
         deleteNotesPage,
-        child: (context) => const DeleteNotesPage(),
+        child: (context) => DeleteNotesPage(noteIndex: r.args.data as int),
       )
       ..child(
         shortBreakInfoPage,

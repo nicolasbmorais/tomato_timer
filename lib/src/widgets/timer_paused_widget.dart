@@ -1,19 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_modular/flutter_modular.dart';
-import 'package:tomato_timer/app/app_routing.dart';
 import 'package:tomato_timer/core/core.dart';
-import 'package:tomato_timer/src/controllers/timer/timer_cubit.dart';
+import 'package:tomato_timer/src/service/countdown_timer/bloc/countdown_cubit.dart';
 import 'package:tomato_timer/src/widgets/pause_buttons.dart';
 
 class TimerPausedWidget extends StatelessWidget {
-  const TimerPausedWidget({
-    required this.timer,
-    required this.cubit,
-    super.key,
-  });
+  const TimerPausedWidget({required this.cubit, super.key});
 
-  final String timer;
-  final TimerCubit cubit;
+  final CountDownCubit cubit;
 
   @override
   Widget build(BuildContext context) {
@@ -36,21 +29,15 @@ class TimerPausedWidget extends StatelessWidget {
             TypographyUI('Pausado', color: AppColors.black)..subheading,
           ],
         ),
-        TypographyUI(timer, color: AppColors.greyDefault)..h1Bold,
+        TypographyUI(cubit.formattedDuration, color: AppColors.greyDefault)
+          ..h1Bold,
         const SizedBox(height: 24),
         ButtonUI(
           'Continue focando',
-          onPressed: () => cubit.startTimer(context),
+          onPressed: cubit.resumeTimer,
         )..solid,
         const SizedBox(height: 12),
-        PauseButtons(
-          onPressedBtn1: () {
-            Modular.to.pushNamed(AppRouting.shortBreakInfoPage);
-          },
-          onPressedBtn2: () {
-            Modular.to.pushNamed(AppRouting.longBreakPage);
-          },
-        ),
+        const PauseButtons(),
       ],
     );
   }

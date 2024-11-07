@@ -1,16 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:tomato_timer/core/core.dart';
-import 'package:tomato_timer/src/controllers/timer/timer_cubit.dart';
+import 'package:tomato_timer/src/service/countdown_timer/bloc/countdown_cubit.dart';
 
 class TimerInitialWidget extends StatelessWidget {
-  const TimerInitialWidget({
-    required this.timer,
-    required this.cubit,
-    super.key,
-  });
+  const TimerInitialWidget({required this.cubit, super.key});
 
-  final String timer;
-  final TimerCubit cubit;
+  final CountDownCubit cubit;
 
   @override
   Widget build(BuildContext context) {
@@ -18,11 +13,12 @@ class TimerInitialWidget extends StatelessWidget {
       children: [
         const SizedBox(height: 24),
         TypographyUI('Pronto?', color: AppColors.greyDefault)..subheading,
-        TypographyUI(timer, color: AppColors.greyDefault)..h1Bold,
+        TypographyUI(cubit.formattedDuration, color: AppColors.greyDefault)
+          ..h1Bold,
         const SizedBox(height: 24),
         ButtonUI(
-          'Comece a focar',
-          onPressed: () => cubit.startTimer(context),
+          'Começar foco',
+          onPressed: cubit.startTimer,
         )..outlined,
       ],
     );

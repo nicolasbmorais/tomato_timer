@@ -41,6 +41,11 @@ class CheckBoxButton extends StatelessWidget {
                 return AppColors.orangePrimary;
               },
             ),
+            side: WidgetStateBorderSide.resolveWith(
+              (Set<WidgetState> states) {
+                return BorderSide(color: AppColors.backgroundColor);
+              },
+            ),
           ),
         ),
         child: FormBuilderCheckbox(
@@ -54,11 +59,6 @@ class CheckBoxButton extends StatelessWidget {
           checkColor: AppColors.backgroundColor,
           onChanged: onChanged,
           onReset: () => onReset,
-          side: WidgetStateBorderSide.resolveWith(
-            (Set<WidgetState> states) {
-              return BorderSide(color: AppColors.backgroundColor);
-            },
-          ),
           enabled: enabled,
           validator: validator,
           decoration: InputDecoration(

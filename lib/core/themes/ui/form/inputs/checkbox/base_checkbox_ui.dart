@@ -8,8 +8,8 @@ abstract class BaseCheckBoxUI extends StatelessWidget {
   BaseCheckBoxUI({
     required this.name,
     required this.text,
+    required this.onChanged,
     this.validator,
-    this.onChanged,
     this.onReset,
     this.enabled = true,
     this.secondary,
@@ -20,7 +20,7 @@ abstract class BaseCheckBoxUI extends StatelessWidget {
   final String name;
   late Widget checkboxButton = const SizedBox.shrink();
   final String text;
-  final void Function(bool?)? onChanged;
+  final void Function(bool?) onChanged;
   final void Function()? onReset;
   final bool enabled;
   final FormFieldValidator<bool>? validator;

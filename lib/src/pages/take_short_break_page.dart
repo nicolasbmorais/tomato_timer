@@ -3,7 +3,8 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:stop_watch_timer/stop_watch_timer.dart';
 import 'package:tomato_timer/app/app_routing.dart';
 import 'package:tomato_timer/core/core.dart';
-import 'package:tomato_timer/src/controllers/timer/timer_cubit.dart';
+import 'package:tomato_timer/src/controllers/settings/settings_cubit.dart';
+import 'package:tomato_timer/src/service/countdown_timer/countdown_timer.dart';
 
 class TakeShortBreakPage extends StatefulWidget {
   const TakeShortBreakPage({super.key});
@@ -13,7 +14,6 @@ class TakeShortBreakPage extends StatefulWidget {
 }
 
 class _TakeShortBreakPageState extends State<TakeShortBreakPage> {
-  final cubit = Modular.get<TimerCubit>();
   StopWatchTimer stopWatchTimer = StopWatchTimer(mode: StopWatchMode.countDown);
 
   @override
@@ -22,7 +22,7 @@ class _TakeShortBreakPageState extends State<TakeShortBreakPage> {
     stopWatchTimer = StopWatchTimer(
       mode: StopWatchMode.countDown,
       presetMillisecond: StopWatchTimer.getMilliSecFromMinute(
-        cubit.settingsModel.shortBreak,
+        Modular.get<SettingsCubit>().settingsModel.shortBreak,
       ),
     );
 
@@ -38,9 +38,7 @@ class _TakeShortBreakPageState extends State<TakeShortBreakPage> {
   @override
   Widget build(BuildContext context) {
     return TemplateUI(
-      appBar: const DefaultAppBarUI(
-        hideLeadingIcons: true,
-      ),
+      appBar: const DefaultAppBarUI(),
       body: Column(
         children: [
           TypographyUI('Restando', color: AppColors.blue)..subheading,
@@ -58,20 +56,17 @@ class _TakeShortBreakPageState extends State<TakeShortBreakPage> {
           ),
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 50),
-            child: SvgUI(
-              size: 300,
-            )..personStopped,
+            child: SvgUI(size: 0.55)..personStopped,
           ),
-          ButtonUI(
-            'Continue focando',
-            onPressed: () {
-              cubit.startTimer(context);
-              Modular.to.popUntil(ModalRoute.withName(AppRouting.timerPage));
-            },
-          )..outlined,
-          const SizedBox(height: 24),
         ],
       ),
+      bottomNavigationBar: ButtonUI(
+        'Continue focando',
+        onPressed: () {
+          Modular.get<CountDownCubit>().resumeTimer();
+          Modular.to.popUntil(ModalRoute.withName(AppRouting.timerPage));
+        },
+      )..outlined,
     );
   }
 }

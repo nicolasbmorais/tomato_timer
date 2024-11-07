@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:tomato_timer/l10n/l10n.dart';
 
 /// O App é o módulo principal da aplicação
 class App extends StatelessWidget {
@@ -14,12 +12,6 @@ class App extends StatelessWidget {
       theme: ThemeData(
         useMaterial3: true,
       ),
-      localizationsDelegates: const [
-        AppLocalizations.delegate,
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate,
-      ],
       builder: (context, child) {
         return ScrollConfiguration(
           behavior: MyBehavior(),
@@ -31,7 +23,6 @@ class App extends StatelessWidget {
         );
       },
       routerConfig: Modular.routerConfig,
-      supportedLocales: AppLocalizations.supportedLocales,
     );
   }
 }

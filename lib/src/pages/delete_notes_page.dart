@@ -1,36 +1,52 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:tomato_timer/core/core.dart';
+import 'package:tomato_timer/src/controllers/notes/notes_cubit.dart';
 
 class DeleteNotesPage extends StatelessWidget {
-  const DeleteNotesPage({super.key});
+  const DeleteNotesPage({required this.noteIndex, super.key});
+
+  final int noteIndex;
 
   @override
   Widget build(BuildContext context) {
     return TemplateUI(
-      appBar: const DefaultAppBarUI(),
       body: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          TypographyUI('Excluir notas?')..h2Bold,
-          TypographyUI('Isso é permanente e não pode ser desfeito')..body1,
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 32),
-            child: SvgUI(
-              size: 300,
-            )..personAttention,
-          ),
-          Row(
+          Column(
             children: [
-              ButtonUI(
-                'Excluir',
-                isExpanded: true,
-              )..outlinedCustom(buttonColor: AppColors.black),
-              const SizedBox(width: 8),
-              ButtonUI(
-                'Apagar',
-                isExpanded: true,
-              )..solid,
+              TypographyUI('Deletar notas?')..h2Bold,
+              const SizedBox(height: 16),
+              TypographyUI(
+                'Tem certeza? Essa ação é permanente e não pode ser desfeita.',
+              )..body1,
+              const SizedBox(height: 24),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 32),
+                child: SvgUI(size: 0.55)..personAttention,
+              ),
             ],
           ),
+        ],
+      ),
+      bottomNavigationBar: Row(
+        children: [
+          ButtonUI(
+            'Cancelar',
+            isExpanded: true,
+            background: AppColors.black,
+            onPressed: () => Modular.to.pop(),
+          )..outlined,
+          const SizedBox(width: 8),
+          ButtonUI(
+            'Apagar',
+            isExpanded: true,
+            onPressed: () {
+              Modular.get<NotesCubit>().removeNote(noteIndex);
+              Modular.to.pop();
+            },
+          )..solid,
         ],
       ),
     );

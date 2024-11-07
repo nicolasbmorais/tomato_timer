@@ -6,66 +6,39 @@ class TemplateUI extends StatelessWidget {
     required this.body,
     super.key,
     this.appBar,
-    this.backgroundColor,
-    this.topPadding,
-    this.leftPadding,
-    this.rightPadding,
-    this.bottomPading,
-    // this.alertModelUI,
-    this.alignmentGeometry,
-    this.statusBarColor,
-    this.fixedBottomWidget,
+    this.bottomNavigationBar,
   });
 
   final Widget body;
-  final Widget? appBar;
-  final Color? backgroundColor;
-  final double? topPadding;
-  final double? leftPadding;
-  final double? rightPadding;
-  final double? bottomPading;
-  // final AlertModelUI? alertModelUI;
-  final AlignmentGeometry? alignmentGeometry;
-  final Color? statusBarColor;
-  final Widget? fixedBottomWidget;
+  final PreferredSizeWidget? appBar;
+  final Widget? bottomNavigationBar;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: backgroundColor ?? AppColors.backgroundColor,
-      body: SafeArea(
-        bottom: false,
-        child: Stack(
+      backgroundColor: AppColors.backgroundColor,
+      appBar: appBar ?? const DefaultAppBarUI(),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16),
+        child: Column(
           children: [
-            Align(
-              alignment: alignmentGeometry ?? Alignment.topCenter,
-              child: SingleChildScrollView(
-                child: Column(
-                  children: [
-                    if (appBar != null) ...[
-                      appBar!,
-                    ],
-                    Padding(
-                      padding: EdgeInsets.only(
-                        left: leftPadding ?? 24,
-                        right: rightPadding ?? 24,
-                        top: topPadding ?? 16,
-                        bottom: bottomPading ?? 0,
-                      ),
-                      child: body,
-                    ),
-                  ],
-                ),
+            Flexible(
+              child: ListView(
+                shrinkWrap: true,
+                children: [
+                  body,
+                ],
               ),
             ),
-
-            // AlertUI( //TODO;rever alert
-            //   alertModelUI: alertModelUI,
-            // ),
           ],
         ),
       ),
-      bottomNavigationBar: fixedBottomWidget,
+      bottomNavigationBar: bottomNavigationBar != null
+          ? Padding(
+              padding: const EdgeInsets.only(left: 16, right: 16, bottom: 24),
+              child: bottomNavigationBar,
+            )
+          : const SizedBox.shrink(),
     );
   }
 }

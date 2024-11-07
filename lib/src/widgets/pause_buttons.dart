@@ -1,44 +1,37 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:tomato_timer/app/app_routing.dart';
 import 'package:tomato_timer/core/core.dart';
-import 'package:tomato_timer/src/controllers/timer/timer_cubit.dart';
+import 'package:tomato_timer/src/service/countdown_timer/countdown_timer.dart';
 
 class PauseButtons extends StatelessWidget {
-  const PauseButtons({
-    required this.onPressedBtn1,
-    required this.onPressedBtn2,
-    super.key,
-  });
+  const PauseButtons({super.key});
 
-  final void Function() onPressedBtn1;
-  final void Function() onPressedBtn2;
   @override
   Widget build(BuildContext context) {
-    final cubit = Modular.get<TimerCubit>();
+    final cubit = Modular.get<CountDownCubit>();
 
     return Row(
       children: [
         ButtonUI(
-          'Pequeno intervalo',
+          'Pausa curta',
           isExpanded: true,
+          background: AppColors.black,
           onPressed: () {
-            cubit.stopTimer();
-            onPressedBtn1();
+            cubit.pauseTimer();
+            Modular.to.pushNamed(AppRouting.shortBreakInfoPage);
           },
-        )..outlinedCustom(
-            buttonColor: AppColors.black,
-          ),
+        )..outlined,
         const SizedBox(width: 12),
         ButtonUI(
-          'Longo intervalo',
+          'Pausa longa',
           isExpanded: true,
+          background: AppColors.black,
           onPressed: () {
-            cubit.stopTimer();
-            onPressedBtn2();
+            cubit.pauseTimer();
+            Modular.to.pushNamed(AppRouting.longBreakPage);
           },
-        )..outlinedCustom(
-            buttonColor: AppColors.black,
-          ),
+        )..outlined,
       ],
     );
   }

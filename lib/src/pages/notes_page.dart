@@ -33,7 +33,7 @@ class NotesPage extends StatelessWidget {
                 if (p0!.isEmpty) {
                   return 'É necessário adicionar um título';
                 } else if (p0.length <= 2) {
-                  return 'O título deve ser menor que duas letras';
+                  return 'O título deve ser maior que duas letras';
                 }
                 return null;
               },
@@ -54,25 +54,22 @@ class NotesPage extends StatelessWidget {
           ],
         ),
       ),
-      fixedBottomWidget: Padding(
-        padding: const EdgeInsets.all(24),
-        child: ButtonUI(
-          'Salvar',
-          onPressed: () {
-            if (!formKey.currentState!.saveAndValidate()) {
-              return;
-            }
-            cubit.saveNotes(
-              title: titleEC.text,
-              description: descriptionEC.text,
-            );
-            Modular.to.pushNamedAndRemoveUntil(
-              AppRouting.timerPage,
-              ModalRoute.withName(AppRouting.timerPage),
-            );
-          },
-        )..solid,
-      ),
+      bottomNavigationBar: ButtonUI(
+        'Salvar',
+        onPressed: () {
+          if (!formKey.currentState!.saveAndValidate()) {
+            return;
+          }
+          cubit.saveNotes(
+            title: titleEC.text,
+            description: descriptionEC.text,
+          );
+          Modular.to.pushNamedAndRemoveUntil(
+            AppRouting.timerPage,
+            ModalRoute.withName(AppRouting.timerPage),
+          );
+        },
+      )..solid,
     );
   }
 }

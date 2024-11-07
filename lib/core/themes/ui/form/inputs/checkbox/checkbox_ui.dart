@@ -6,8 +6,8 @@ class CheckBoxUI extends BaseCheckBoxUI {
   CheckBoxUI({
     required super.name,
     required super.text,
+    required super.onChanged,
     super.validator,
-    super.onChanged,
     super.enabled,
     super.onReset,
     super.secondary,

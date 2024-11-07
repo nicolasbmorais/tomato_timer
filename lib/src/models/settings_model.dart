@@ -29,8 +29,8 @@ class UserSettingsModel {
       shortBreak: 5,
       longBreak: 10,
       timerSound: 'Bip Alarm',
-      showCompleteNotification: true,
-      restartAutomatically: true,
+      showCompleteNotification: false,
+      restartAutomatically: false,
     );
   }
 

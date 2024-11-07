@@ -26,7 +26,6 @@ class NotesContent extends StatelessWidget {
             )..textButton,
           ],
         ),
-        // const SizedBox(height: 20),
         const NotesContentWidget(),
       ],
     );

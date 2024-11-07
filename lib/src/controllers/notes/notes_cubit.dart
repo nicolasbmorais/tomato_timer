@@ -6,7 +6,7 @@ part 'notes_state.dart';
 class NotesCubit extends Cubit<NotesState> {
   NotesCubit() : super(NotesInitial());
 
-  List<NotesModel> notesModeList = [];
+  List<NotesModel> notesModeList = List.empty(growable: true);
   bool isSelected = false;
 
   void saveNotes({required String title, required String description}) {

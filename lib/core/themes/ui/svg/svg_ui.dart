@@ -2,21 +2,24 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:tomato_timer/core/themes/ui/svg/base_svg_ui.dart';
 
-/// SvgUI é a abstração dos svg
+/// SvgUI é a abstração do widget svg
 //ignore: must_be_immutable
 class SvgUI extends BaseSvgUI {
   /// Construtor padrão
   SvgUI({
-    super.key,
     this.size,
+    super.key,
     this.color,
+    this.isIcon = false,
     this.onTap,
   });
 
-  /// width define a largura
+  /// size define a altura e largura
   final double? size;
 
   final Color? color;
+
+  final bool isIcon;
 
   void Function()? onTap;
 
@@ -26,8 +29,8 @@ class SvgUI extends BaseSvgUI {
       onTap: onTap,
       child: SvgPicture.asset(
         path,
-        width: size ?? 16,
-        height: size ?? 16,
+        width: isIcon ? 22 : MediaQuery.sizeOf(context).width * size!,
+        height: isIcon ? 22 : MediaQuery.sizeOf(context).height * size!,
         colorFilter: color != null
             ? ColorFilter.mode(
                 color!,

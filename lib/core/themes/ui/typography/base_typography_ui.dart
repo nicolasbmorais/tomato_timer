@@ -6,15 +6,16 @@ abstract class BaseTypographyUI extends StatelessWidget {
   /// Construtor padrão
   BaseTypographyUI({super.key});
 
-  /// fontWeight define tipo de fonte
+  /// fontWeight define o peso da fonte
   FontWeight fontWeight = FontWeight.w400;
 
   /// fontSize define o tamanho da fonte
   double fontSize = 16;
 
   /// fontHeight define a altura da fonte
-  double fontHeight = 0;
+  double fontHeight = 22;
 
+  /// fontWeight define tipo de fonte
   String fontFamily = 'Roboto';
 
   /// escolhe a fonte
