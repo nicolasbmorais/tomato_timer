@@ -78,7 +78,6 @@ class CountDownCubit extends Cubit<CountDownState> {
   }
 
   Future<void> _playTimerSound() async {
-    // await AudioPlayer.clearAssetCache(); Nao esta passando nesse cache
     final sound = _settingsCubit.settingsModel.timerSound
         .replaceAll(' ', '-')
         .toLowerCase();
